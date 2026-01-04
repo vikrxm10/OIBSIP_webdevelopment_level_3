@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PizzaBuilder - Veggie Selection</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2590d",
+                        "background-light": "#f8f6f5",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#1c120d] dark:text-white">
+<div class="relative flex h-screen w-full flex-col overflow-hidden">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e6dbd6] dark:border-[#3a2d26] px-6 lg:px-10 py-3 bg-white dark:bg-[#1a110d] shrink-0 z-20">
+<div class="flex items-center gap-4 text-[#1c120d] dark:text-white">
+<div class="size-8 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-[-0.015em]">PizzaBuilder</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="hidden md:flex items-center gap-9">
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="menu.html">Menu</a>
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Deals</a>
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="orders.html">Orders</a>
+</div>
+<button aria-label="View cart" class="flex items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-primary/10 text-primary hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+</button>
+<div class="md:hidden flex items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-[#f4ebe7] dark:bg-[#3a2d26] text-[#1c120d] dark:text-white">
+<span class="material-symbols-outlined text-[20px]">menu</span>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<div class="flex flex-1 overflow-hidden">
+<!-- Left Side: Customization Panel -->
+<main class="flex-1 flex flex-col overflow-y-auto scrollbar-hide relative bg-background-light dark:bg-background-dark">
+<div class="w-full max-w-[960px] mx-auto p-4 md:p-8 pb-32">
+<!-- Progress Bar -->
+<div class="flex flex-col gap-2 mb-8">
+<div class="flex gap-6 justify-between items-end">
+<div>
+<p class="text-sm font-semibold text-primary uppercase tracking-wider mb-1">Step 4 of 5</p>
+<h1 class="text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]">Load up the Veggies</h1>
+</div>
+<span class="text-sm font-medium text-gray-500 dark:text-gray-400 hidden sm:block">Next: Cheese &amp; Sauce</span>
+</div>
+<div class="rounded-full bg-[#e8d7ce] dark:bg-[#3a2d26] h-2 mt-2">
+<div class="h-2 rounded-full bg-primary" style="width: 80%;"></div>
+</div>
+</div>
+<!-- Search & Chips -->
+<div class="flex flex-col md:flex-row gap-4 mb-8 sticky top-0 z-10 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm py-2">
+<div class="relative flex-1 min-w-[200px]">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#9c6549]">
+<span class="material-symbols-outlined text-[24px]">search</span>
+</div>
+<input id="toppingSearch" class="block w-full pl-10 pr-3 py-3 border-none rounded-lg leading-5 bg-white dark:bg-[#1a110d] text-[#1c120d] dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary sm:text-sm shadow-sm" placeholder="Search toppings (e.g. Spinach, Peppers)" type="text"/>
+</div>
+<div class="flex gap-2 overflow-x-auto scrollbar-hide items-center pb-2 md:pb-0">
+<button data-filter="all" class="filter-btn flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-[#1c120d] dark:bg-white text-white dark:text-[#1c120d] px-5 transition-transform active:scale-95 shadow-md">
+<span class="text-sm font-bold">All</span>
+</button>
+<button data-filter="peppers" class="filter-btn flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-[#1a110d] border border-transparent hover:border-primary/30 px-5 transition-transform active:scale-95 shadow-sm">
+<span class="text-sm font-medium">Peppers</span>
+</button>
+<button data-filter="onions" class="filter-btn flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-[#1a110d] border border-transparent hover:border-primary/30 px-5 transition-transform active:scale-95 shadow-sm">
+<span class="text-sm font-medium">Onions</span>
+</button>
+<button data-filter="mushrooms" class="filter-btn flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-[#1a110d] border border-transparent hover:border-primary/30 px-5 transition-transform active:scale-95 shadow-sm">
+<span class="text-sm font-medium">Mushrooms</span>
+</button>
+</div>
+</div>
+<!-- Toppings Grid -->
+<div id="toppingsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+<!-- Topping Card: Selected State -->
+<div data-topping-name="Fresh Tomatoes" data-topping-price="1.5" data-category="tomatoes" role="button" tabindex="0" class="topping-card group relative flex flex-col overflow-hidden rounded-xl bg-white dark:bg-[#1a110d] border-2 border-primary shadow-lg transition-all cursor-pointer">
+<div class="absolute top-3 right-3 z-10 check-badge bg-primary text-white rounded-full p-1 shadow-md opacity-100">
+<span class="material-symbols-outlined text-[20px] block">check</span>
+</div>
+<div class="aspect-[4/3] w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
+<img alt="Fresh Tomatoes" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110" data-alt="Close up of fresh sliced red tomatoes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYQ-rMTBjYuW275GmIP9tuQs4gj8k6_UD_HmUVjWVTEAjz6XlhPxi4zsa4OtkXcZraWiupyUOSUBN8fSOATkjUrUslhM-QHwIA7wTccQV5oaxvTwv2Soy-pAnfHdz4-dldWieEUCDaSftywR8PN5k36a4FGRFbXzpDwhRZBb_Xex7Kdxpb5I1kwf2XL4krRI56gs3s5Lw_5Vn3oWaLcaEGYsrX9SYFOSZ-q6lAeo8ivATjBjrFjpOFWCXZDZajAYe0OUvOzGyccIA"/>
+</div>
+<div class="p-4 flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<h3 class="text-lg font-bold text-[#1c120d] dark:text-white">Fresh Tomatoes</h3>
+<span class="text-sm font-bold text-primary">+$1.50</span>
+</div>
+<div class="mt-2 flex bg-gray-100 dark:bg-[#2a1d17] p-1 rounded-lg">
+<button data-dist="left" class="dist-btn flex-1 text-xs font-medium py-1.5 rounded-md text-gray-500 hover:text-primary hover:bg-white dark:hover:bg-[#3a2d26] transition-all">Left</button>
+<button data-dist="whole" data-selected="true" class="dist-btn flex-1 text-xs font-bold py-1.5 rounded-md bg-white dark:bg-[#3a2d26] text-primary shadow-sm">Whole</button>
+<button data-dist="right" class="dist-btn flex-1 text-xs font-medium py-1.5 rounded-md text-gray-500 hover:text-primary hover:bg-white dark:hover:bg-[#3a2d26] transition-all">Right</button>
+</div>
+</div>
+</div>
+<!-- Topping Card: Default State -->
+<div data-topping-name="Green Peppers" data-topping-price="1.0" data-category="peppers" role="button" tabindex="0" class="topping-card group relative flex flex-col overflow-hidden rounded-xl bg-white dark:bg-[#1a110d] border border-transparent hover:border-primary/50 shadow-sm hover:shadow-md transition-all cursor-pointer">
+<div class="aspect-[4/3] w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
+<img alt="Green Peppers" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110" data-alt="Sliced green bell peppers on a cutting board" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCt5pXarYXiaKkKZiOQ4bE75Y_4vHJS_Kt9lLiFg4p2lbKpIr8rJ9NRFawe9CLpLOSqwy-FWS6lygkD_NhOC9YFZQ9It4kckjU4_sAVjjahLn4sHpLH4pIuqL_wvmkXefvBt9fcApadf2QlzyigPFE9-gc3-ZvRf5wXxBH75hUwUH_cf7RavvOm2sYF8f9Q2MqJ4b5SiYr7aln-nCJeIwkiJ4TARXeJa_YpEJGrljuxa6jh4fW16gwnqF61dPpSD_utLRMHoXUGoSU"/>
+</div>
+<div class="p-4 flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<h3 class="text-lg font-bold text-[#1c120d] dark:text-white">Green Peppers</h3>
+<span class="text-sm font-semibold text-gray-500">+$1.00</span>
+</div>
+<!-- Hover reveal distribution control -->
+<div class="mt-2 flex bg-gray-100 dark:bg-[#2a1d17] p-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity">
+<button data-dist="left" class="dist-btn flex-1 text-xs font-medium py-1.5 rounded-md text-gray-500 hover:text-primary hover:bg-white dark:hover:bg-[#3a2d26] transition-all">Left</button>
+<button data-dist="whole" class="dist-btn flex-1 text-xs font-medium py-1.5 rounded-md text-gray-500 hover:text-primary hover:bg-white dark:hover:bg-[#3a2d26] transition-all">Whole</button>
+<button data-dist="right" class="dist-btn flex-1 text-xs font-medium py-1.5 rounded-md text-gray-500 hover:text-primary hover:bg-white dark:hover:bg-[#3a2d26] transition-all">Right</button>
+</div>
+</div>
+</div>
+<!-- Topping Card: Selected State (Left Only) -->
+<div data-topping-name="Mushrooms" data-topping-price="1.25" data-category="mushrooms" role="button" tabindex="0" class="topping-card group relative flex flex-col overflow-hidden rounded-xl bg-white dark:bg-[#1a110d] border-2 border-primary shadow-lg transition-all cursor-pointer">
+<div class="absolute top-3 right-3 z-10 bg-primary text-white rounded-full p-1 shadow-md">
+<span class="material-symbols-outlined text-[20px] block">check</span>
+</div>
+<div class="aspect-[4/3] w-full overflow-hidden bg-gray-100 dark:bg-gray-800 relative">
+<img alt="Mushrooms" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110" data-alt="Fresh button mushrooms in a pile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPpYp91Bfff_MXyl-gJGdEu48vPOUuen9R5Cz0f2TR8e9IpUbtAwY_5TRGT7fLiwSezeeE5JBULu3CgDtS2QevLWYPNIcD2uvukCGFXVleqVBzAG4-o8kNYS19oXjOoz-WdrIOqiarwmGY3a4cU-e0TtVKCeKUg1NhmxloWcJjjQ1OGsiCWhAKkDlTt8XaK-6UvC78pKvHhoVKm578KWsLGad1Nhwkp4vTsc2bo-cM119xV4AqS3FOey91Vp9iqm5NMoCgGuovaTY"/>
+<div class="absolute inset-y-0 right-0 w-1/2 bg-black/40 backdrop-blur-[1px]"></div>
+<div class="absolute bottom-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded">Left Half</div>
+</div>
+<div class="p-4 flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<h3 class="text-lg font-bold text-[#1c120d] dark:text-white">Mushrooms</h3>
+<span class="text-sm font-bold text-primary">+$1.25</span>
+</div>
+<div class="mt-2 flex bg-gray-100 dark:bg-[#2a1d17] p-1 rounded-lg">
+<button data-dist="left" class="dist-btn flex-1 text-xs font-bold py-1.5 rounded-md bg-white dark:bg-[#3a2d26] text-primary shadow-sm">Left</button>
+<button data-dist="whole" class="dist-btn flex-1 text-xs font-medium py-1.5 rounded-md text-gray-500 hover:text-primary hover:bg-white dark:hover:bg-[#3a2d26] transition-all">Whole</button>
+<button data-dist="right" class="dist-btn flex-1 text-xs font-medium py-1.5 rounded-md text-gray-500 hover:text-primary hover:bg-white dark:hover:bg-[#3a2d26] transition-all">Right</button>
+</div>
+</div>
+</div>
+<!-- More Cards -->
+<div data-topping-name="Red Onions" data-topping-price="1.0" data-category="onions" role="button" tabindex="0" class="group relative flex flex-col overflow-hidden rounded-xl bg-white dark:bg-[#1a110d] border border-transparent hover:border-primary/50 shadow-sm hover:shadow-md transition-all cursor-pointer">
+<div class="aspect-[4/3] w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
+<img alt="Red Onions" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110" data-alt="Sliced red onions close up" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCowJzMVaFk-k1zL7tZhFdITagvg4xlAckD2wYsgzrPQuvIk9adzU-t5Ghsdb999uKDN1yRP8ZTqN_208iaRCt-idnpPtZurTdUuch3CHkm5jrFHgWsyn8hUtwp4QgfRG64rYEvDJrLdUbzpbM--90RMBtjA8-Y7rT3JJ7zuURvwZ2oksxSA9yy-bnPNSBo3UCaAso1RExixWzkb-NifUQAPaAIKW34R1pf5xdvoX_MWHe8Zw3lOcXM3xfAGefKPTP8TP_i0AH8KVs"/>
+</div>
+<div class="p-4 flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<h3 class="text-lg font-bold text-[#1c120d] dark:text-white">Red Onions</h3>
+<span class="text-sm font-semibold text-gray-500">+$1.00</span>
+</div>
+<div class="mt-2 flex bg-gray-100 dark:bg-[#2a1d17] p-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="flex-1 text-xs font-medium py-1.5 rounded-md text-gray-500 hover:text-primary hover:bg-white dark:hover:bg-[#3a2d26] transition-all">Left</button>
+<button class="flex-1 text-xs font-medium py-1.5 rounded-md text-gray-500 hover:text-primary hover:bg-white dark:hover:bg-[#3a2d26] transition-all">Whole</button>
+<button class="flex-1 text-xs font-medium py-1.5 rounded-md text-gray-500 hover:text-primary hover:bg-white dark:hover:bg-[#3a2d26] transition-all">Right</button>
+</div>
+</div>
+</div>
+<div data-topping-name="Fresh Spinach" data-topping-price="1.5" data-category="greens" role="button" tabindex="0" class="group relative flex flex-col overflow-hidden rounded-xl bg-white dark:bg-[#1a110d] border border-transparent hover:border-primary/50 shadow-sm hover:shadow-md transition-all cursor-pointer">
+<div class="aspect-[4/3] w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
+<img alt="Spinach" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110" data-alt="Fresh spinach leaves" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8H8GC7HJ8R8-3ITaRJlTSQAeJ2XPO6b7OOELm4l11KmT1eoUrGauYkjinnPL6uiZf1tudonP5Rj7zhwawfD617bD01CAaMKx0KBhjlMGZAxkETdX-91T1NDMCDwTrDC743QETIEvBNA3W5b6XW0v06eH9YnWkVrl5EpfI4G-JdEF4XzvIDJU8LwMEaHzKqB7fccExw_lHi2Ids83YM2IM2JD1b5q6chMHtPjv3pJ5HQlwyREVgWfih305s6u0mJRiRugnuk9fc_o"/>
+</div>
+<div class="p-4 flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<h3 class="text-lg font-bold text-[#1c120d] dark:text-white">Fresh Spinach</h3>
+<span class="text-sm font-semibold text-gray-500">+$1.50</span>
+</div>
+<div class="mt-2 flex bg-gray-100 dark:bg-[#2a1d17] p-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="flex-1 text-xs font-medium py-1.5 rounded-md text-gray-500 hover:text-primary hover:bg-white dark:hover:bg-[#3a2d26] transition-all">Left</button>
+<button class="flex-1 text-xs font-medium py-1.5 rounded-md text-gray-500 hover:text-primary hover:bg-white dark:hover:bg-[#3a2d26] transition-all">Whole</button>
+<button class="flex-1 text-xs font-medium py-1.5 rounded-md text-gray-500 hover:text-primary hover:bg-white dark:hover:bg-[#3a2d26] transition-all">Right</button>
+</div>
+</div>
+</div>
+<div data-topping-name="Black Olives" data-topping-price="1.0" data-category="olives" role="button" tabindex="0" class="group relative flex flex-col overflow-hidden rounded-xl bg-white dark:bg-[#1a110d] border border-transparent hover:border-primary/50 shadow-sm hover:shadow-md transition-all cursor-pointer">
+<div class="aspect-[4/3] w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
+<img alt="Black Olives" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110" data-alt="Black olives in a bowl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmaa1mTsWWDquNhdAPBnEsywAoSL2T8hHbk7-zgAsrA1-lrT1lZGIG0sKneS0DTMhVyeLj2NdIirM9gve6f4AGLdn8x-j_pfbfp4uQgYv4NX1O2d6Qs2aJDWl-xYOSNvveEqNrbJYcz3VfikncJImM2k8Uoa_5uqglr6AFtvrMmRRG4XsvZRa5gBqPbhR26hV7BZBHk7EINSJJvXHYKqkq70I4PKQ4F7rDUnk8wSzvVrJAkca2tpUq5kpuMOF8xMxvanlmIKJiC4A"/>
+</div>
+<div class="p-4 flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<h3 class="text-lg font-bold text-[#1c120d] dark:text-white">Black Olives</h3>
+<span class="text-sm font-semibold text-gray-500">+$1.00</span>
+</div>
+<div class="mt-2 flex bg-gray-100 dark:bg-[#2a1d17] p-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="flex-1 text-xs font-medium py-1.5 rounded-md text-gray-500 hover:text-primary hover:bg-white dark:hover:bg-[#3a2d26] transition-all">Left</button>
+<button class="flex-1 text-xs font-medium py-1.5 rounded-md text-gray-500 hover:text-primary hover:bg-white dark:hover:bg-[#3a2d26] transition-all">Whole</button>
+<button class="flex-1 text-xs font-medium py-1.5 rounded-md text-gray-500 hover:text-primary hover:bg-white dark:hover:bg-[#3a2d26] transition-all">Right</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Right Side: Sticky Summary Panel -->
+<aside class="hidden lg:flex w-[360px] flex-col border-l border-[#e6dbd6] dark:border-[#3a2d26] bg-white dark:bg-[#1a110d] shrink-0">
+<div class="p-6 flex-1 flex flex-col h-full overflow-y-auto">
+<h2 class="text-2xl font-bold mb-6">Your Pizza</h2>
+<!-- Pizza Visual -->
+<div class="relative w-full aspect-square mb-6 flex items-center justify-center p-4">
+<div class="relative w-full h-full rounded-full bg-[#f4ebe7] dark:bg-[#2a1d17] shadow-inner flex items-center justify-center overflow-hidden border-4 border-[#e8d7ce] dark:border-[#3a2d26]">
+<!-- Abstract Representation of Toppings -->
+<div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1590947132387-155cc02f3212?q=80&amp;w=2670&amp;auto=format&amp;fit=crop')] bg-cover bg-center opacity-30" data-alt="Pizza dough texture"></div>
+<!-- Visual layer for tomatoes (Whole) -->
+<div class="absolute inset-0 bg-red-500/20 rounded-full scale-90"></div>
+<!-- Visual layer for mushrooms (Left Half) -->
+<div class="absolute inset-y-0 left-0 w-1/2 bg-amber-800/20 rounded-l-full scale-90"></div>
+</div>
+</div>
+<!-- Order Details -->
+<div class="flex-1 flex flex-col gap-4">
+<div class="flex justify-between items-center pb-3 border-b border-dashed border-[#e6dbd6] dark:border-[#3a2d26]">
+<div>
+<h3 class="font-bold text-lg">Custom Pizza</h3>
+<p class="text-sm text-gray-500">Large 14"</p>
+</div>
+<span class="font-bold">$14.00</span>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between text-sm">
+<span class="text-gray-500">Thin Crust</span>
+<span>$0.00</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-gray-500">Tomato Sauce</span>
+<span>$0.00</span>
+</div>
+<h4 class="font-bold text-sm mt-4 text-primary">Veggies</h4>
+<div id="toppingsList" class="flex flex-col gap-2">
+<!-- dynamic items inserted here -->
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Summary Actions -->
+<div class="p-6 border-t border-[#e6dbd6] dark:border-[#3a2d26] bg-white dark:bg-[#1a110d]">
+<div class="flex justify-between items-end mb-4">
+<span class="text-gray-500 font-medium">Total</span>
+<span id="toppingsTotal" class="text-3xl font-black tracking-tight text-[#1c120d] dark:text-white">$16.75</span>
+</div>
+<button id="continueBtn" class="w-full h-12 flex items-center justify-center gap-2 rounded-lg bg-primary text-white font-bold text-lg hover:bg-[#d94a00] transition-colors shadow-lg shadow-primary/20">
+                        Continue to Cheese
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</aside>
+<!-- Mobile Sticky Footer CTA -->
+<div class="lg:hidden fixed bottom-0 left-0 w-full p-4 bg-white dark:bg-[#1a110d] border-t border-[#e6dbd6] dark:border-[#3a2d26] shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] z-30">
+<div class="flex items-center gap-4">
+<div class="flex flex-col">
+<span class="text-xs text-gray-500 font-bold uppercase">Total</span>
+<span id="mobileTotal" class="text-xl font-black text-[#1c120d] dark:text-white">$16.75</span>
+</div>
+<button id="mobileNextBtn" class="flex-1 h-12 flex items-center justify-center gap-2 rounded-lg bg-primary text-white font-bold hover:bg-[#d94a00] transition-colors">
+                    Next Step
+                    <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+  const formatCurrency = n => '$' + Number(n).toFixed(2);
+  let store = null;
+  try { store = JSON.parse(localStorage.getItem('pizzaBuilder') || '{}'); } catch(e){ store = {} }
+  if (!store || !store.base){ window.location.href = 'pizabuilder.html'; return; }
+
+  const toppingsGrid = document.getElementById('toppingsGrid');
+  const toppingsList = document.getElementById('toppingsList');
+  const totalEl = document.getElementById('toppingsTotal');
+  const mobileTotalEl = document.getElementById('mobileTotal');
+  const continueBtn = document.getElementById('continueBtn');
+  const mobileNextBtn = document.getElementById('mobileNextBtn');
+
+  // helper to read price
+  function numberOf(v){ return Number(v || 0); }
+
+  function getSelected(){ return store.toppings || [] }
+
+  function save(){ localStorage.setItem('pizzaBuilder', JSON.stringify(store)); renderSummary(); }
+
+  function renderSummary(){
+    toppingsList.innerHTML = '';
+    const selected = getSelected();
+    let sum = 0;
+    selected.forEach(item => {
+      sum += numberOf(item.price);
+      const row = document.createElement('div');
+      row.className = 'flex justify-between items-center';
+      row.innerHTML = `<div class="flex items-center gap-2"><button type="button" data-remove="${item.name}" aria-label="Remove ${item.name}" class="text-primary material-symbols-outlined">cancel</button><span>${item.name} (${item.dist || 'Whole'})</span></div><span>${formatCurrency(item.price)}</span>`;
+      toppingsList.appendChild(row);
+    });
+    const base = numberOf(store.base?.price || 0);
+    const sauce = numberOf(store.sauce?.price || 0);
+    const cheese = numberOf(store.cheese?.price || 0);
+    const total = 14.00 + base + sauce + cheese + sum;
+    totalEl.textContent = formatCurrency(total);
+    mobileTotalEl.textContent = formatCurrency(total);
+
+    // attach remove handlers
+    toppingsList.querySelectorAll('[data-remove]').forEach(btn => btn.addEventListener('click', ()=>{
+      const name = btn.dataset.remove;
+      store.toppings = (store.toppings||[]).filter(t => t.name !== name);
+      // unmark card
+      const card = document.querySelector('[data-topping-name="'+name+'"]');
+      if (card){ card.classList.remove('border-2','border-primary'); card.querySelector('.check-badge')?.classList.add('opacity-0'); }
+      save();
+    }));
+  }
+
+  // Attach interactions to topping cards
+  toppingsGrid.querySelectorAll('.topping-card').forEach(card => {
+    const name = card.dataset.toppingName;
+    const price = Number(card.dataset.toppingPrice || 0);
+    const badge = card.querySelector('.check-badge');
+
+    function markSelected(dist){
+      const useDist = (dist || 'Whole');
+      card.classList.add('border-2','border-primary');
+      if (badge) badge.classList.remove('opacity-0');
+      // set distribution button UI and aria-pressed
+      const btns = card.querySelectorAll('.dist-btn');
+      btns.forEach(b => { b.dataset.selected = ''; b.setAttribute('aria-pressed','false'); });
+      const selBtn = card.querySelector('.dist-btn[data-dist="'+useDist.toLowerCase()+'"]') || card.querySelector('.dist-btn');
+      if (selBtn){ selBtn.dataset.selected = 'true'; selBtn.setAttribute('aria-pressed','true'); }
+      // add to store.toppings if not present
+      store.toppings = store.toppings || [];
+      const found = store.toppings.find(t => t.name === name);
+      if (!found) store.toppings.push({ name, price, dist: useDist });
+      else found.dist = useDist;
+      save();
+    }
+
+    function unmark(){
+      card.classList.remove('border-2','border-primary');
+      if (badge) badge.classList.add('opacity-0');
+      card.querySelectorAll('.dist-btn').forEach(b => { b.dataset.selected = ''; b.setAttribute('aria-pressed','false'); });
+      store.toppings = (store.toppings||[]).filter(t => t.name !== name);
+      save();
+    }
+
+    // click toggles selection
+    card.addEventListener('click', (ev)=>{
+      // ignore clicks on distribution buttons
+      if (ev.target.closest('.dist-btn')) return;
+      const found = (store.toppings||[]).find(t => t.name === name);
+      if (found) unmark(); else markSelected('Whole');
+    });
+
+    // keyboard support
+    card.addEventListener('keydown', (ev)=>{ if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); const found = (store.toppings||[]).find(t => t.name === name); if (found) unmark(); else markSelected('Whole'); } });
+
+    // distribution buttons inside card
+    card.querySelectorAll('.dist-btn').forEach(btn => {
+      btn.addEventListener('click', (ev)=>{
+        ev.stopPropagation();
+        const dist = btn.dataset.dist || 'Whole';
+        // set button UI and aria
+        btn.parentElement.querySelectorAll('.dist-btn').forEach(b => { b.dataset.selected = ''; b.setAttribute('aria-pressed','false'); });
+        btn.dataset.selected = 'true';
+        btn.setAttribute('aria-pressed','true');
+        // update store
+        store.toppings = store.toppings || [];
+        const found = store.toppings.find(t => t.name === name);
+        if (!found) { store.toppings.push({ name, price, dist }); }
+        else found.dist = dist;
+        // ensure marked
+        card.classList.add('border-2','border-primary');
+        if (badge) badge.classList.remove('opacity-0');
+        save();
+      });
+    });
+  });
+
+  // Initial restore of selected toppings
+  (function initFromStore(){
+    if (store.toppings && store.toppings.length){
+      store.toppings.forEach(t => {
+        const card = document.querySelector('[data-topping-name="'+t.name+'"]');
+        if (card){ card.classList.add('border-2','border-primary'); const b = card.querySelector('.check-badge'); if (b) b.classList.remove('opacity-0');
+          // set distribution UI
+          if (t.dist){ const sel = card.querySelector('[data-dist="'+t.dist.toLowerCase()+'"]') || card.querySelector('[data-dist]'); if (sel){ sel.dataset.selected = 'true'; sel.setAttribute('aria-pressed','true'); }
+          }
+        }
+      });
+    }
+    renderSummary();
+  })();
+
+  // cart helpers for adding the custom pizza
+  function getCart(){ try{ return JSON.parse(localStorage.getItem('cart')||'[]'); }catch(e){ return []; } }
+  function saveCart(c){ localStorage.setItem('cart', JSON.stringify(c)); }
+  function buildPizzaItem(){
+    const selected = getSelected();
+    const base = numberOf(store.base?.price || 0);
+    const sauce = numberOf(store.sauce?.price || 0);
+    const cheese = numberOf(store.cheese?.price || 0);
+    const toppingsSum = (selected||[]).reduce((s,i)=> s + numberOf(i.price), 0);
+    const price = +((14.00 + base + sauce + cheese + toppingsSum).toFixed(2));
+    return {
+      name: 'Custom Pizza',
+      price,
+      qty: 1,
+      details: {
+        base: store.base || {},
+        sauce: store.sauce || {},
+        cheese: store.cheese || {},
+        toppings: selected || []
+      }
+    };
+  }
+
+  continueBtn.addEventListener('click', ()=> {
+    // add the current pizza to cart and go to cart.html
+    const cart = getCart();
+    const item = buildPizzaItem();
+    const found = cart.find(i => i.name === item.name && JSON.stringify(i.details) === JSON.stringify(item.details));
+    if (found) found.qty = (found.qty||1) + 1;
+    else cart.push(item);
+    saveCart(cart);
+    store.step = 5; save();
+    window.location.href = 'cart.html';
+  });
+  mobileNextBtn.addEventListener('click', ()=> {
+    const cart = getCart();
+    const item = buildPizzaItem();
+    const found = cart.find(i => i.name === item.name && JSON.stringify(i.details) === JSON.stringify(item.details));
+    if (found) found.qty = (found.qty||1) + 1;
+    else cart.push(item);
+    saveCart(cart);
+    store.step = 5; save();
+    window.location.href = 'cart.html';
+  });
+
+  // Cart button navigation
+  document.querySelectorAll('button[aria-label="View cart"]').forEach(b => b.addEventListener('click', ()=> window.location.href = 'cart.html'));
+
+  // Filter buttons + Simple search filter
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  function applyFilter(filter){
+    const q = (document.getElementById('toppingSearch').value || '').toLowerCase();
+    document.querySelectorAll('#toppingsGrid [data-topping-name]').forEach(card => {
+      const name = card.dataset.toppingName.toLowerCase();
+      const category = (card.dataset.category || '').toLowerCase();
+      const matchesText = name.includes(q);
+      const matchesCategory = (filter === 'all') || (category && category === filter);
+      card.style.display = (matchesText && matchesCategory) ? '' : 'none';
+    });
+  }
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', ()=> {
+      filterButtons.forEach(b => b.classList.remove('bg-[#1c120d]','dark:bg-white','text-white','dark:text-[#1c120d]'));
+      btn.classList.add('bg-[#1c120d]','dark:bg-white','text-white','dark:text-[#1c120d]');
+      const f = btn.dataset.filter || 'all';
+      applyFilter(f);
+    });
+  });
+  // init active
+  const initBtn = document.querySelector('.filter-btn[data-filter="all"]');
+  if (initBtn){ initBtn.classList.add('bg-[#1c120d]','dark:bg-white','text-white','dark:text-[#1c120d]'); }
+  document.getElementById('toppingSearch').addEventListener('input', (ev)=>{
+    applyFilter(document.querySelector('.filter-btn.bg\[\#1c120d\]')?.dataset?.filter || 'all');
+  });
+
+})();
+</script>
+<script src="app.js"></script>
+</body></html>

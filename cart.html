@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Cart - Pizza Slice</title>
+<!-- Google Fonts: Plus Jakarta Sans & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2590d",
+                        "background-light": "#f8f6f5",
+                        "background-dark": "#221610",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#2f221c",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem", 
+                        "lg": "0.5rem", 
+                        "xl": "0.75rem", 
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Plus Jakarta Sans", sans-serif;
+        }
+        /* Custom scrollbar for cross-sell section if needed */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col transition-colors duration-200">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 w-full border-b border-[#f4ebe7] dark:border-[#3a2d26] bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur-sm">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<!-- Logo -->
+<div class="flex items-center gap-3">
+<div class="size-8 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">local_pizza</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Pizza Slice</h1>
+</div>
+<!-- Desktop Nav -->
+<nav class="hidden md:flex items-center gap-8">
+    <a class="text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary transition-colors" href="menu.html">Menu</a>
+    <a class="text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary transition-colors" href="#">Deals</a>
+    <a class="text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary transition-colors" href="#">Locations</a>
+    <a class="text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary transition-colors" href="orders.html">Orders</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-3">
+<button class="hidden sm:flex h-10 px-6 items-center justify-center rounded-lg bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-colors">
+                        Log In
+                    </button>
+<button class="relative h-10 w-10 flex items-center justify-center rounded-lg bg-[#f4ebe7] dark:bg-[#3a2d26] text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-[#4a3a32] transition-colors" aria-label="View cart">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span id="headerCartCount" class="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-white">0</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<!-- Breadcrumbs -->
+<nav aria-label="Breadcrumb" class="flex mb-6">
+<ol class="flex items-center space-x-2">
+<li>
+<a class="text-gray-500 dark:text-gray-400 hover:text-primary text-sm font-medium" href="#">Home</a>
+</li>
+<li><span class="text-gray-400 dark:text-gray-600">/</span></li>
+<li>
+<a class="text-gray-500 dark:text-gray-400 hover:text-primary text-sm font-medium" href="menu.html">Menu</a>
+</li>
+<li><span class="text-gray-400 dark:text-gray-600">/</span></li>
+<li>
+<span aria-current="page" class="text-gray-900 dark:text-white text-sm font-medium">My Cart</span>
+</li>
+</ol>
+</nav>
+<!-- Page Heading -->
+<div class="mb-8">
+<h2 id="cartHeading" class="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight">My Cart (0 items)</h2>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+<!-- Left Column: Cart Items -->
+<div class="lg:col-span-8 space-y-8">
+<!-- Cart Item List -->
+<div id="cartItems" class="flex flex-col gap-4">
+<!-- Item 1 -->
+<div class="group flex flex-col sm:flex-row gap-4 bg-surface-light dark:bg-surface-dark p-4 rounded-xl border border-gray-100 dark:border-[#3a2d26] shadow-sm hover:shadow-md transition-shadow">
+<!-- Image -->
+<div class="shrink-0">
+<div class="h-24 w-24 sm:h-32 sm:w-32 rounded-lg bg-gray-200 bg-cover bg-center" data-alt="Top view of a meat lovers pizza with pepperoni and sausage" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAm6LvXUAekfUAaOhQGz8nv0XSPSEmHJshFq39Dxd5Ca2Pdp8ujc9Z5-C4v5Qk7-SQaxVY0R1n1_UZTd9UZvHVwMjevbHXolHEJbKXMYaZ3v4n0K7iTGHFrrfHr6f3IV0ZDOCKeYNLJGStWfL_7CV8Gb4kl4-Gn5mlRL_nk_6agocWNuVxYuaX8uT9VSiE18Iwfr1Wn4PqNvQQ0L89TlmlAdFPnW-DxiSXgn5ow6DyDsM5rp8eaJlTe5QcMiS9AjpNE0ZOZ4tC7WwQ');">
+</div>
+</div>
+<!-- Content -->
+<div class="flex flex-1 flex-col justify-between">
+<div class="flex justify-between items-start gap-2">
+<div>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white">Meat Lover's Pizza</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Large, Pan Crust</p>
+<p class="text-sm text-gray-500 dark:text-gray-400">Extra Cheese, Pepperoni, Sausage, Bacon</p>
+</div>
+<button class="text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-colors p-1" title="Remove item">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+<div class="flex items-end justify-between mt-4">
+<div class="text-lg font-bold text-primary">$18.00</div>
+<!-- Stepper -->
+<div class="flex items-center bg-gray-50 dark:bg-[#3a2d26] rounded-lg border border-gray-200 dark:border-[#4a3a32]">
+<button class="w-8 h-8 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-[#4a3a32] rounded-l-lg transition-colors">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<input class="w-10 h-8 text-center bg-transparent border-0 p-0 text-sm font-bold text-gray-900 dark:text-white focus:ring-0" readonly="" type="text" value="1"/>
+<button class="w-8 h-8 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-[#4a3a32] rounded-r-lg transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="group flex flex-col sm:flex-row gap-4 bg-surface-light dark:bg-surface-dark p-4 rounded-xl border border-gray-100 dark:border-[#3a2d26] shadow-sm hover:shadow-md transition-shadow">
+<!-- Image -->
+<div class="shrink-0">
+<div class="h-24 w-24 sm:h-32 sm:w-32 rounded-lg bg-gray-200 bg-cover bg-center" data-alt="Custom pizza with vegetable toppings on a wooden table" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBc7XzsgmCynIry1aJ3VWkPZxqWVfLEGm8nj8YonCTxDBBViyiliFsZZykJzOWDTC1Z0HQp4W6xo_-FaEFGc8FFAZCfSca3vruH1hRugPNbmT542cWm6X2Pv3seAFVV8og4uQc5cvmWG12EvwZJ0CuV4tg79iTLdRpTkCZCJzwNDoITGbmO1kwZozfzKHpHlTBlPYiSWnb24o1A5JScbLxcGv5gZNcA9GgW0-i1QiYE8gxaq6B3NsN2hSoZdngZDir1wNi2TSsh6Ng');">
+</div>
+</div>
+<!-- Content -->
+<div class="flex flex-1 flex-col justify-between">
+<div class="flex justify-between items-start gap-2">
+<div>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white">Custom Pizza</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Medium, Thin Crust</p>
+<p class="text-sm text-gray-500 dark:text-gray-400">Onions, Peppers, Black Olives, Mushrooms</p>
+</div>
+<button class="text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-colors p-1" title="Remove item">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+<div class="flex items-end justify-between mt-4">
+<div class="text-lg font-bold text-primary">$14.50</div>
+<!-- Stepper -->
+<div class="flex items-center bg-gray-50 dark:bg-[#3a2d26] rounded-lg border border-gray-200 dark:border-[#4a3a32]">
+<button class="w-8 h-8 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-[#4a3a32] rounded-l-lg transition-colors">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<input class="w-10 h-8 text-center bg-transparent border-0 p-0 text-sm font-bold text-gray-900 dark:text-white focus:ring-0" readonly="" type="text" value="1"/>
+<button class="w-8 h-8 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-[#4a3a32] rounded-r-lg transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Cross-sell Section -->
+<div class="mt-8 pt-8 border-t border-dashed border-gray-200 dark:border-[#3a2d26]">
+<h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Complete your meal</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- Cross Sell 1 -->
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-light dark:bg-surface-dark border border-gray-100 dark:border-[#3a2d26]">
+<div class="h-16 w-16 rounded-md bg-gray-100 bg-cover bg-center" data-alt="Cold cola drink with ice in a glass" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD5RlBEZzxe-yrDpLEKDFoQDjez6o4rRcTkxL8B0SwDZNHv_sa419PrUX8WuPRhv3Sd99OlFi-GRO_nxBCv0mr5dnbbDEp0MDgiAhsfc1qKUNLOv13HPI25kkurMNRrvD_6Q_z4L2Cqvlh0pjTsCIeUJ0DpSAI4UZxYc67DXRaPjwSRhzfjCLh3E86cFiW5wdWrhS3xBmK0dWEnGw75I0MaNt51KAMojR8A9PlkvAKgyPT3MyqCdFwj-a9-DL9gi0GR5bCq6nA2OsM');">
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold text-gray-900 dark:text-white">Coca-Cola</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">$2.50</p>
+</div>
+<button class="h-8 w-8 rounded-full bg-primary/10 hover:bg-primary text-primary hover:text-white flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+<!-- Cross Sell 2 -->
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-light dark:bg-surface-dark border border-gray-100 dark:border-[#3a2d26]">
+<div class="h-16 w-16 rounded-md bg-gray-100 bg-cover bg-center" data-alt="Golden baked garlic knots in a basket" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCOUZW5T1u2eouVUwpcg7h0oRCpndx_CpO3PKqaTCiK4ZiETn-wZz_nqL7IEHcD3miwvuRnveZ815r7b0i02vF2MZtr22_1aQrFT5FmTgYi-nsj--ignzu7caZRUzDTV8IH8vfxoUZ6CxXdOHjQnondtA3CeNpJpPHDFpGQ0SiN4K2b6kZZ4dvQhC7jdeIl9TCmKCR41YDoSPsJ43DFlPjAi2slvpZwYjXk_yyQ6SZ04utICsoXcEBDnExyi5Rpfnz9jlI9Phkm2BQ');">
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold text-gray-900 dark:text-white">Garlic Knots (6pc)</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">$4.00</p>
+</div>
+<button class="h-8 w-8 rounded-full bg-primary/10 hover:bg-primary text-primary hover:text-white flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Order Summary -->
+<div class="lg:col-span-4">
+<div class="sticky top-24 space-y-4">
+<div class="bg-surface-light dark:bg-surface-dark p-6 rounded-xl border border-gray-100 dark:border-[#3a2d26] shadow-sm">
+<h3 class="text-lg font-bold text-gray-900 dark:text-white mb-6">Order Summary</h3>
+<!-- Line Items -->
+<div class="space-y-3 mb-6 border-b border-gray-100 dark:border-[#3a2d26] pb-6">
+<div class="flex justify-between text-sm">
+<span class="text-gray-600 dark:text-gray-300">Subtotal</span>
+<span id="subtotal" class="font-medium text-gray-900 dark:text-white">$0.00</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-gray-600 dark:text-gray-300">Delivery Fee</span>
+<span id="deliveryFee" class="font-medium text-gray-900 dark:text-white">$5.00</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-gray-600 dark:text-gray-300">Tax</span>
+<span id="tax" class="font-medium text-gray-900 dark:text-white">$0.00</span>
+</div>
+</div>
+<!-- Total -->
+<div class="flex justify-between items-center mb-6">
+<span class="text-base font-bold text-gray-900 dark:text-white">Total</span>
+<span id="totalAmount" class="text-2xl font-extrabold text-primary">$0.00</span>
+</div>
+<!-- Promo Code -->
+<script>
+(function(){
+  function formatCurrency(n){ return '$'+Number(n).toFixed(2); }
+  function getCart(){ try{ return JSON.parse(localStorage.getItem('cart')||'[]'); }catch(e){ return []; } }
+  function saveCart(c){ localStorage.setItem('cart', JSON.stringify(c)); renderCart(); }
+  const cartItemsEl = document.getElementById('cartItems');
+  const cartHeading = document.getElementById('cartHeading');
+  const headerBadge = document.getElementById('headerCartCount');
+  const subtotalEl = document.getElementById('subtotal');
+  const deliveryEl = document.getElementById('deliveryFee');
+  const taxEl = document.getElementById('tax');
+  const totalEl = document.getElementById('totalAmount');
+
+  function renderCart(){
+    const cart = getCart();
+    cartItemsEl.innerHTML = '';
+    if (!cart.length){
+      cartItemsEl.innerHTML = '<div class="p-6 text-center text-gray-500">Your cart is empty.</div>';
+    } else {
+      cart.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'group flex flex-col sm:flex-row gap-4 bg-surface-light dark:bg-surface-dark p-4 rounded-xl border border-gray-100 dark:border-[#3a2d26] shadow-sm hover:shadow-md transition-shadow';
+        div.innerHTML = `<div class="shrink-0"><div class="h-24 w-24 sm:h-32 sm:w-32 rounded-lg bg-gray-100 bg-cover bg-center"></div></div>
+        <div class="flex flex-1 flex-col justify-between">
+          <div class="flex justify-between items-start gap-2"><div><h3 class="text-lg font-bold text-gray-900 dark:text-white">${item.name}</h3><p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Custom</p></div><button class="text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-colors p-1" title="Remove item" data-remove="${item.name}"><span class="material-symbols-outlined text-[20px]">delete</span></button></div>
+          <div class="flex items-end justify-between mt-4"><div class="text-lg font-bold text-primary">${formatCurrency(item.price)}</div>
+          <div class="flex items-center bg-gray-50 dark:bg-[#3a2d26] rounded-lg border border-gray-200 dark:border-[#4a3a32]"><button class="w-8 h-8 dec" data-name="${item.name}"><span class="material-symbols-outlined">remove</span></button><input class="w-10 h-8 text-center bg-transparent border-0 p-0 text-sm font-bold text-gray-900 dark:text-white" type="text" value="${item.qty}" readonly /><button class="w-8 h-8 inc" data-name="${item.name}"><span class="material-symbols-outlined">add</span></button></div></div></div>`;
+        cartItemsEl.appendChild(div);
+      });
+      // handlers
+      cartItemsEl.querySelectorAll('[data-remove]').forEach(btn=> btn.addEventListener('click', ()=>{ const name = btn.dataset.remove; const c = getCart().filter(i=> i.name !== name); saveCart(c); }));
+      cartItemsEl.querySelectorAll('.dec').forEach(btn=> btn.addEventListener('click', ()=>{ const name = btn.dataset.name; const c = getCart(); const idx = c.findIndex(i=>i.name===name); if (idx>-1){ if (c[idx].qty>1) c[idx].qty--; else c.splice(idx,1); saveCart(c); }}));
+      cartItemsEl.querySelectorAll('.inc').forEach(btn=> btn.addEventListener('click', ()=>{ const name = btn.dataset.name; const c = getCart(); const idx = c.findIndex(i=>i.name===name); if (idx>-1){ c[idx].qty = (c[idx].qty||1)+1; saveCart(c); } }));
+    }
+    const subtotal = cart.reduce((s,i)=> s + Number(i.price||0) * (i.qty||1), 0);
+    const delivery = Number((deliveryEl?.textContent||'$0').replace(/[^0-9.]/g,'')) || 0;
+    const tax = +(subtotal * 0.08).toFixed(2);
+    const total = +(subtotal + delivery + tax).toFixed(2);
+    if (subtotalEl) subtotalEl.textContent = formatCurrency(subtotal);
+    if (taxEl) taxEl.textContent = formatCurrency(tax);
+    if (totalEl) totalEl.textContent = formatCurrency(total);
+    if (cartHeading) cartHeading.textContent = `My Cart (${cart.reduce((s,i)=>s+(i.qty||0),0)} items)`;
+    if (headerBadge) headerBadge.textContent = `${cart.reduce((s,i)=>s+(i.qty||0),0)}`;
+  }
+  // Attach cross-sell add handlers (Coca-Cola, Garlic Knots)
+  document.querySelectorAll('.mt-8 .grid > div').forEach(card => {
+    const btn = card.querySelector('button');
+    if (!btn) return;
+    btn.addEventListener('click', ()=>{
+      const name = (card.querySelector('p.text-sm')?.textContent || card.querySelector('p')?.textContent || 'Item').trim();
+      const priceText = (card.querySelector('p.text-xs')?.textContent || '$0');
+      const price = Number((priceText||'').replace(/[^0-9.]/g,'')) || 0;
+      const c = getCart();
+      const found = c.find(i=>i.name === name);
+      if (found) found.qty = (found.qty||1) + 1;
+      else c.push({ name, price, qty: 1 });
+      saveCart(c);
+      // simple visual feedback
+      const orig = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '<span class="material-symbols-outlined">check</span>';
+      setTimeout(()=>{ btn.innerHTML = orig; btn.disabled = false; }, 700);
+    });
+  });
+
+  renderCart();
+})();
+</script>
+<div class="mb-6">
+<label class="sr-only" for="promo">Promo Code</label>
+<div class="relative">
+<input class="w-full bg-gray-50 dark:bg-[#3a2d26] border border-gray-200 dark:border-[#4a3a32] rounded-lg py-2.5 pl-4 pr-20 text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none dark:text-white placeholder-gray-400" id="promo" name="promo" placeholder="Enter promo code" type="text"/>
+<button class="absolute right-1.5 top-1.5 bottom-1.5 px-3 text-xs font-bold text-primary hover:bg-primary/10 rounded">APPLY</button>
+</div>
+</div>
+<!-- Checkout Button -->
+<button id="checkoutBtn" class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3.5 px-4 rounded-lg flex items-center justify-center gap-2 transition-all shadow-lg shadow-primary/20">
+<span>Proceed to Checkout</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<p class="text-xs text-center text-gray-400 mt-4">
+                            Secure Checkout powered by Stripe
+                        </p>
+<script>
+// Checkout navigation: ensure cart not empty then navigate
+(function(){
+  document.getElementById('checkoutBtn')?.addEventListener('click', function(){
+    let cart = [];
+    try { cart = JSON.parse(localStorage.getItem('cart')||'[]'); } catch(e){ cart = []; }
+    if (!cart || !cart.length){
+      alert('Your cart is empty. Add items before proceeding to checkout.');
+      return;
+    }
+    // Optionally save any state or validation here
+    window.location.href = 'reviewpayment.html';
+  });
+})();
+</script>
+</div>
+<!-- Trust Badges (Optional Decoration) -->
+<div class="flex justify-center gap-4 grayscale opacity-50">
+<!-- Simulated Icons for credit cards -->
+<div class="h-6 w-10 bg-gray-200 dark:bg-gray-700 rounded"></div>
+<div class="h-6 w-10 bg-gray-200 dark:bg-gray-700 rounded"></div>
+<div class="h-6 w-10 bg-gray-200 dark:bg-gray-700 rounded"></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script src="app.js"></script>
+</body></html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>User Dashboard - Pizza Varieties</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2590d",
+                        "background-light": "#f8f6f5",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>.hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-white transition-colors duration-200">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<header class="sticky top-0 z-50 flex items-center justify-between border-b border-solid border-gray-200 dark:border-gray-800 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm px-4 lg:px-10 py-3">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2 text-primary">
+<div class="size-8 flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">local_pizza</span>
+</div>
+<h2 class="text-gray-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">SliceLife</h2>
+</div>
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-gray-900 dark:text-gray-200 text-sm font-medium hover:text-primary transition-colors" href="#">Menu</a>
+<a class="text-gray-900 dark:text-gray-200 text-sm font-medium hover:text-primary transition-colors" href="#">Deals</a>
+<a class="text-gray-900 dark:text-gray-200 text-sm font-medium hover:text-primary transition-colors" href="orders.html">Orders</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-4 md:gap-8 items-center">
+<label class="hidden md:flex flex-col min-w-40 h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-gray-100 dark:bg-gray-800">
+<div class="text-gray-500 flex border-none items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-gray-900 dark:text-white focus:outline-0 focus:ring-0 border-none bg-transparent focus:border-none h-full placeholder:text-gray-500 px-3 text-sm font-normal leading-normal" placeholder="Search pizza..." value=""/>
+</div>
+</label>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white hover:bg-primary/20 hover:text-primary transition-colors relative" aria-label="View cart">
+<span class="material-symbols-outlined text-[20px]">shopping_basket</span>
+<span id="cartCount" class="absolute top-0 right-0 min-w-[18px] h-5 px-1 text-xs font-bold rounded-full bg-primary text-white flex items-center justify-center">0</span>
+</button>
+<a href="user-settings.html" aria-label="Open profile" class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-gray-100 dark:border-gray-800" data-alt="User profile picture of a smiling person" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAjBoIr2_xi-poNAfMtONT_CI3kS7QIpqToDni1nLyTKbbzm3zgc3v_kfy4pXBPy3Yrd84hUIk1DKoDosK0S0lND-JNe_QjJEzKj3eP3YMEqnzX4UkHQ5UrMkiy-dSEPnX0ZV7lRiyYbXP2Rp7KKTZMkuqxZB25JWypZVAhxf8OU58KpG-UyWRpNmO_pogiu7ItVmccewPf4_B5SiB5o7F_wVjLCcxfPRdworPBcVyENapY4p8UBFKKVRSvptUk2cMWEMjDkbSqvwQ");'></a>
+</div>
+</header>
+<main class="flex-1 w-full max-w-[1440px] mx-auto px-4 md:px-10 lg:px-20 py-6">
+<div class="w-full mb-10">
+<div class="@container">
+<div class="flex flex-col-reverse gap-6 rounded-2xl bg-white dark:bg-gray-800/50 p-6 md:p-10 shadow-sm md:flex-row md:items-center">
+<div class="flex flex-col gap-6 md:w-1/2 md:pr-8">
+<div class="flex flex-col gap-3 text-left">
+<h1 class="text-gray-900 dark:text-white text-3xl md:text-5xl font-black leading-tight tracking-[-0.033em]">
+                                    Create Your Masterpiece
+                                </h1>
+<h2 class="text-gray-600 dark:text-gray-300 text-base md:text-lg font-normal leading-relaxed">
+                                    Start from scratch with our fresh dough and your imagination. Choose from over 30 toppings.
+                                </h2>
+</div>
+<a href="pizabuilder.html" class="flex w-fit items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary hover:bg-orange-600 text-white text-base font-bold leading-normal tracking-[0.015em] transition-all shadow-lg shadow-primary/30">
+<span class="mr-2">Start Customizing</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<div class="w-full md:w-1/2 h-64 md:h-80 bg-center bg-no-repeat bg-cover rounded-xl shadow-md" data-alt="Close up of a pizza being made with fresh dough and ingredients" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDLbqnpuaFwclYwHh3w23VfSVsoYj05bE-ZrtlTYmUqWyDvC0H4P2tNLrbd9bVHnWwepCGBeKOYCn4YMXgDP5oZJIbx4G1UcU8DpMGkRBXD-ZqEjFJbtDQ1tOGfMeCcyoq8noYNBIJTWGfufj9l01BgnYDr1SD174E_TSlFj7hFYoij1omqur1IXpRZJBKIxwU8QycN1BTv5U2j24TXThL_1Zxq2CZEL3D56aXFANsyNiUOgEbeh1_nrXmRrWKO8XCwR7jBDxhErjo");'></div>
+</div>
+</div>
+</div>
+<div class="w-full max-w-2xl mx-auto mb-10">
+<label class="flex flex-col w-full h-14 md:h-16 shadow-lg shadow-gray-200/50 dark:shadow-none">
+<div class="flex w-full flex-1 items-center rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 transition-all focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary">
+<div class="text-gray-400 dark:text-gray-500 mr-3">
+<span class="material-symbols-outlined text-2xl md:text-3xl">search</span>
+</div>
+<input class="flex w-full flex-1 bg-transparent text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 text-base md:text-lg font-medium focus:outline-none border-none p-0 h-full" placeholder="Find your favorite pizza or ingredient..." type="text"/>
+<button class="ml-2 hidden sm:flex items-center justify-center bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-600 dark:text-gray-300 rounded-lg px-3 py-1.5 text-xs font-bold transition-colors">
+                            CMD + K
+                        </button>
+</div>
+</label>
+</div>
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+<div class="flex flex-col gap-2">
+<h2 class="text-gray-900 dark:text-white text-3xl font-black leading-tight tracking-[-0.033em]">Hungry, Alex?</h2>
+<p class="text-gray-600 dark:text-gray-400 text-base font-normal">What's on the menu today?</p>
+</div>
+<div class="flex gap-3 overflow-x-auto hide-scrollbar pb-2 md:pb-0">
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary text-white px-6 shadow-md shadow-primary/20 transition-transform active:scale-95">
+<span class="text-sm font-bold">All Pizzas</span>
+</button>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-700 px-6 transition-colors">
+<span class="text-sm font-medium">Meat Lovers</span>
+</button>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-700 px-6 transition-colors">
+<span class="text-sm font-medium">Veggie</span>
+</button>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-700 px-6 transition-colors">
+<span class="text-sm font-medium">Spicy</span>
+</button>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-700 px-6 transition-colors">
+<span class="text-sm font-medium">Specials</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<div class="group flex flex-col rounded-xl bg-white dark:bg-gray-800 shadow-sm hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 border border-gray-100 dark:border-gray-700 overflow-hidden">
+<div class="relative w-full aspect-[4/3] overflow-hidden">
+<div class="absolute inset-0 bg-center bg-no-repeat bg-cover transition-transform duration-500 group-hover:scale-105" data-alt="Pepperoni pizza with melted cheese and crispy crust" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB5RjQCubgA9AYGZ6XW-buFg5hXKidhbKVdSAv-zPC_HzI1dq0xprfolB6E0gApf9b7LvO6iwlZR3yHW2_JU6Aq0pqAyKDdaQMMLOSWyqi4KLWkVzMkUB1zmh6LrhF92FF-1bcz1pwArlZhB10eShT_dp-Npi7zKFgkJTh4rlAEGKuShK0JkkYqWog_hmgSVOhgu6FmtCCdiuCn-QKiyHjAgIqy0oZX6w6BQmhZU2UjTC05BNAA1rMFcH_e0lG1oBFOvw2TxAuqFms");'></div>
+<div class="absolute top-3 right-3 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm px-2 py-1 rounded-md">
+<span class="text-xs font-bold text-gray-900 dark:text-white">$14.99</span>
+</div>
+</div>
+<div class="flex flex-col flex-1 p-5 gap-3">
+<div class="flex justify-between items-start">
+<h3 class="text-gray-900 dark:text-white text-lg font-bold leading-tight">Pepperoni Feast</h3>
+<span class="material-symbols-outlined text-red-500 text-[20px]" title="Popular">local_fire_department</span>
+</div>
+<p class="text-gray-500 dark:text-gray-400 text-sm font-normal line-clamp-2">Double pepperoni, extra mozzarella, signature tomato sauce.</p>
+<div class="mt-auto pt-4 flex gap-3">
+<button class="flex-1 h-10 bg-primary hover:bg-orange-600 text-white text-sm font-bold rounded-lg transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                                Add
+                            </button>
+<button class="h-10 w-10 border border-gray-200 dark:border-gray-600 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors" title="Customize">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group flex flex-col rounded-xl bg-white dark:bg-gray-800 shadow-sm hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 border border-gray-100 dark:border-gray-700 overflow-hidden">
+<div class="relative w-full aspect-[4/3] overflow-hidden">
+<div class="absolute inset-0 bg-center bg-no-repeat bg-cover transition-transform duration-500 group-hover:scale-105" data-alt="Classic Margherita pizza with basil leaves" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCalcLgNcNiN_ISsiT1tafF36g6oes_I0xLFdJ18GBAjLB7tpnTvWYe6Dun6kjzAdGzBlfftHozMTZnej05bRUVYf4xAXDKW2AevTREnQINzRH6h6KrfsmCyinSau2EvSYEJ6cGBRNvJcmE5VqSJgYomxar74rUtNs0uDLH-kDZWVBcGSqUryLETSYMXWw6VuMxQcf-FhT07yk6MIdpzZlhlZ0uGVtcYoji-EABl59kXPfwB4o7u9ubRdl-lW7soyFt6A0CJBEdFuQ");'></div>
+<div class="absolute top-3 right-3 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm px-2 py-1 rounded-md">
+<span class="text-xs font-bold text-gray-900 dark:text-white">$12.99</span>
+</div>
+<div class="absolute top-3 left-3 bg-green-100 text-green-700 px-2 py-1 rounded-md">
+<span class="text-xs font-bold">Veggie</span>
+</div>
+</div>
+<div class="flex flex-col flex-1 p-5 gap-3">
+<div class="flex justify-between items-start">
+<h3 class="text-gray-900 dark:text-white text-lg font-bold leading-tight">Margherita Classic</h3>
+</div>
+<p class="text-gray-500 dark:text-gray-400 text-sm font-normal line-clamp-2">Fresh basil, buffalo mozzarella, san marzano tomato sauce, olive oil.</p>
+<div class="mt-auto pt-4 flex gap-3">
+<button class="flex-1 h-10 bg-primary hover:bg-orange-600 text-white text-sm font-bold rounded-lg transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                                Add
+                            </button>
+<button class="h-10 w-10 border border-gray-200 dark:border-gray-600 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors" title="Customize">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group flex flex-col rounded-xl bg-white dark:bg-gray-800 shadow-sm hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 border border-gray-100 dark:border-gray-700 overflow-hidden">
+<div class="relative w-full aspect-[4/3] overflow-hidden">
+<div class="absolute inset-0 bg-center bg-no-repeat bg-cover transition-transform duration-500 group-hover:scale-105" data-alt="BBQ Chicken pizza with red onions and cilantro" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA07lJv2b0jUav80tITz0Tn9vtY46nh3x4-1_rhopYp3Z07QQFCaoo8Ac0FaAVM1hoQj2h_VTtVTLiqNyIuYFCv4Nm5xDeaBwfjgsN1r6P6_2NJwYi1bivDtU9Sk142gDLuIiBWS_0sduDbvyJSbs597leWGx4sMnjuiTsjIbfqaNEnA3WwhBb4PsKTtUN4zfLAw7Ir85Wzi21n8mzZRqiZRD46gJh-8N8vVx8XyZpGVBFrg_Pko0MkaAqy2F7zbOWVEvgaBJ76FUg");'></div>
+<div class="absolute top-3 right-3 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm px-2 py-1 rounded-md">
+<span class="text-xs font-bold text-gray-900 dark:text-white">$15.99</span>
+</div>
+</div>
+<div class="flex flex-col flex-1 p-5 gap-3">
+<div class="flex justify-between items-start">
+<h3 class="text-gray-900 dark:text-white text-lg font-bold leading-tight">BBQ Chicken</h3>
+</div>
+<p class="text-gray-500 dark:text-gray-400 text-sm font-normal line-clamp-2">Grilled chicken, red onions, cilantro, smoky BBQ sauce drizzle.</p>
+<div class="mt-auto pt-4 flex gap-3">
+<button class="flex-1 h-10 bg-primary hover:bg-orange-600 text-white text-sm font-bold rounded-lg transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                                Add
+                            </button>
+<button class="h-10 w-10 border border-gray-200 dark:border-gray-600 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors" title="Customize">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group flex flex-col rounded-xl bg-white dark:bg-gray-800 shadow-sm hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 border border-gray-100 dark:border-gray-700 overflow-hidden">
+<div class="relative w-full aspect-[4/3] overflow-hidden">
+<div class="absolute inset-0 bg-center bg-no-repeat bg-cover transition-transform duration-500 group-hover:scale-105" data-alt="Vegetarian pizza with mushrooms peppers and olives" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA0PbybMnDXNn0nct_oo7SCukkxLdkjXGB2unUFNkyrgP_NEs3tRSo2pcpKkvAyNZrNerum302ZzKG34fmZM45ClsebCsVoHfB91sQoSni75gN7SF87-3AhqjLWFdErbJw6QIDuzwGHuSjlq1BXi-SHLq-VoCoQFh7PY_xjdLybxgHPa_r6Idj5fJoZsYaB7KU-MLekfC-ziAmNYavEwzpLKu-iCpFrP2RAOVZrJeCu7mdksY9pFnk60nZWOs71tscDu2CCpVJLCvc");'></div>
+<div class="absolute top-3 right-3 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm px-2 py-1 rounded-md">
+<span class="text-xs font-bold text-gray-900 dark:text-white">$13.99</span>
+</div>
+<div class="absolute top-3 left-3 bg-green-100 text-green-700 px-2 py-1 rounded-md">
+<span class="text-xs font-bold">Veggie</span>
+</div>
+</div>
+<div class="flex flex-col flex-1 p-5 gap-3">
+<div class="flex justify-between items-start">
+<h3 class="text-gray-900 dark:text-white text-lg font-bold leading-tight">Garden Supreme</h3>
+</div>
+<p class="text-gray-500 dark:text-gray-400 text-sm font-normal line-clamp-2">Bell peppers, mushrooms, onions, black olives, cherry tomatoes.</p>
+<div class="mt-auto pt-4 flex gap-3">
+<button class="flex-1 h-10 bg-primary hover:bg-orange-600 text-white text-sm font-bold rounded-lg transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                                Add
+                            </button>
+<button class="h-10 w-10 border border-gray-200 dark:border-gray-600 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors" title="Customize">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group flex flex-col rounded-xl bg-white dark:bg-gray-800 shadow-sm hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 border border-gray-100 dark:border-gray-700 overflow-hidden">
+<div class="relative w-full aspect-[4/3] overflow-hidden">
+<div class="absolute inset-0 bg-center bg-no-repeat bg-cover transition-transform duration-500 group-hover:scale-105" data-alt="Hawaiian pizza with pineapple and ham" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD7IqCclxIMMdiasBqaCu-2oIGuqRZqh5HO7u--dMMO9aSRSBLGl4Kq4CoT_5k3sz9ozF9k3q0rSnqW63NbnGQ4aKZy7PgW1X-dujL1Ikq0Fme70XXsPdw1AuZ55s0OmBXPaSFgrcG70sOupPMducYLwrnXl7g-_hpb6r6ISf6bwX0HqsTX1yQcBLOGY6vb4kBt1I76C5IpcBV77gunad4txrYqxqjx6JK4KRfQ8E2a5DmlDTc7XmBwZktktbRN51UCPkCN034kd_w");'></div>
+<div class="absolute top-3 right-3 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm px-2 py-1 rounded-md">
+<span class="text-xs font-bold text-gray-900 dark:text-white">$14.50</span>
+</div>
+</div>
+<div class="flex flex-col flex-1 p-5 gap-3">
+<div class="flex justify-between items-start">
+<h3 class="text-gray-900 dark:text-white text-lg font-bold leading-tight">Aloha Hawaiian</h3>
+</div>
+<p class="text-gray-500 dark:text-gray-400 text-sm font-normal line-clamp-2">Smoked ham, fresh pineapple chunks, mozzarella blend.</p>
+<div class="mt-auto pt-4 flex gap-3">
+<button class="flex-1 h-10 bg-primary hover:bg-orange-600 text-white text-sm font-bold rounded-lg transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                                Add
+                            </button>
+<button class="h-10 w-10 border border-gray-200 dark:border-gray-600 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors" title="Customize">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group flex flex-col rounded-xl bg-white dark:bg-gray-800 shadow-sm hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 border border-gray-100 dark:border-gray-700 overflow-hidden">
+<div class="relative w-full aspect-[4/3] overflow-hidden">
+<div class="absolute inset-0 bg-center bg-no-repeat bg-cover transition-transform duration-500 group-hover:scale-105" data-alt="Meat lovers pizza with bacon sausage and pepperoni" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAnE0W4ttrv1TTon2BwrBZLHDZUxpFNY2I5pNL3AKpB846SJyUOflsogEn6wlnOEKjuyWHM3gIVosb9f_ZMIiohqdMGQD6zUwQXjDIeE_kNV_f7tWBldHvoHQjWmYWfMzuoe1VIM1CydRRPMpFtzJkV-heNAa55gLSiIId93sDRLIbqo3HkTFc0rI9b4kxS08LlCGMXRo3_jL4evpHLFB6NP0q2fPc7c6yz4sLnwSSrhIV0AZRIWQjxb0rpX6yNRhJc6KG6noE5wMY");'></div>
+<div class="absolute top-3 right-3 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm px-2 py-1 rounded-md">
+<span class="text-xs font-bold text-gray-900 dark:text-white">$16.99</span>
+</div>
+<div class="absolute top-3 left-3 bg-orange-100 text-orange-700 px-2 py-1 rounded-md">
+<span class="text-xs font-bold">Meat</span>
+</div>
+</div>
+<div class="flex flex-col flex-1 p-5 gap-3">
+<div class="flex justify-between items-start">
+<h3 class="text-gray-900 dark:text-white text-lg font-bold leading-tight">Carnivore</h3>
+</div>
+<p class="text-gray-500 dark:text-gray-400 text-sm font-normal line-clamp-2">Italian sausage, bacon, ham, pepperoni, ground beef.</p>
+<div class="mt-auto pt-4 flex gap-3">
+<button class="flex-1 h-10 bg-primary hover:bg-orange-600 text-white text-sm font-bold rounded-lg transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                                Add
+                            </button>
+<button class="h-10 w-10 border border-gray-200 dark:border-gray-600 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors" title="Customize">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script>
+(function(){
+  function formatCurrency(n){ return '$'+Number(n).toFixed(2); }
+  function getCart(){ try{ return JSON.parse(localStorage.getItem('cart')||'[]'); }catch(e){ return []; } }
+  function saveCart(c){ localStorage.setItem('cart', JSON.stringify(c)); updateBadge(); }
+  function updateBadge(){ const c = getCart(); const qty = c.reduce((s,i)=> s + (i.qty||0), 0); const el = document.getElementById('cartCount'); if (el) el.textContent = qty; }
+  updateBadge();
+  // Navigate to cart page when cart button clicked
+  document.querySelectorAll('button[aria-label="View cart"]').forEach(b => b.addEventListener('click', ()=> window.location.href = 'cart.html'));
+  // Attach to any Add button (matches textual content or add_shopping_cart icon)
+  document.querySelectorAll('button').forEach(btn => {
+    const icon = btn.querySelector('span.material-symbols-outlined');
+    if (btn.innerText && btn.innerText.trim() === 'Add' || icon?.textContent?.trim() === 'add_shopping_cart'){
+      btn.addEventListener('click', ()=>{
+        const card = btn.closest('.group') || btn.closest('div');
+        const name = (card && (card.querySelector('h3')?.textContent || card.querySelector('h1')?.textContent) )?.trim() || 'Item';
+        const priceText = (card && card.querySelector('div.absolute span')?.textContent) || (card && card.querySelector('.text-xs.font-bold')?.textContent) || '$0';
+        const price = Number((priceText||'').replace(/[^0-9.]/g,'')) || 0;
+        const cart = getCart();
+        const found = cart.find(i => i.name === name);
+        if (found){ found.qty = (found.qty||1) + 1; }
+        else { cart.push({ name, price, qty: 1 }); }
+        saveCart(cart);
+        const orig = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = 'Added ✓';
+        setTimeout(()=>{ btn.innerHTML = orig; btn.disabled = false; }, 800);
+      });
+    }
+  });
+})();
+</script>
+<script src="app.js"></script>
+</body></html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pizza Slice - User Settings</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2590d",
+                        "background-light": "#f8f6f5",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #e8d7ce;
+            border-radius: 20px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background-color: #4a3b32;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen bg-background-light dark:bg-background-dark font-display text-[#1c120d] dark:text-[#fcf9f8] overflow-x-hidden">
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e8d7ce] dark:border-b-[#4a3b32] bg-[#fcf9f8] dark:bg-[#1c120d] px-10 py-3 shadow-sm">
+<div class="flex items-center gap-4 text-[#1c120d] dark:text-white">
+<div class="size-8 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_330)">
+<path clip-rule="evenodd" d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z" fill="currentColor" fill-rule="evenodd"></path>
+</g>
+<defs>
+<clipPath id="clip0_6_330"><rect fill="white" height="48" width="48"></rect></clipPath>
+</defs>
+</svg>
+</div>
+<h2 class="text-[#1c120d] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Pizza Slice</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8 items-center">
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-[#1c120d] dark:text-[#e8d7ce] hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="menu.html">Menu</a>
+<a class="text-[#1c120d] dark:text-[#e8d7ce] hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="deals.html">Deals</a>
+<a class="text-[#1c120d] dark:text-[#e8d7ce] hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="orders.html">Orders</a>
+<a class="text-[#1c120d] dark:text-[#e8d7ce] hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="cart.html">Cart</a>
+</nav>
+<div class="flex items-center gap-4">
+<button aria-label="Sign Out" class="hidden sm:flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white hover:bg-orange-700 transition-colors text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Sign Out</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-[#e8d7ce] dark:border-[#4a3b32]" data-alt="User avatar showing a smiling person" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAYAkVKBNGbShgr_bLmK8JES72g5kKzBqMCCvP19RIFl-Vmrm_QTDlZWoAlHX_XwSR19XG9kCKjwA-LIKNpUh779XPkABZrKHCKvCE_x_kACMOU3zF-6xNy6RhsWC4peT4X8rlkAaq1W8-eOqmhhOU0eiMOP0d5CbD3eqeljm7hIp8O2oVq-I0DPblM8jdj3_R_UWVlXywaNIIYaVQ5ipyudIXv_IuKOsKWQGaUs3OLuWq2LlIeEAx3ZTPRMZf0A-YgmM_xs4CMWYU");'></div>
+</div>
+</div>
+</header>
+<div class="flex flex-1 w-full max-w-[1440px] mx-auto">
+<aside class="hidden lg:flex w-72 flex-col justify-between border-r border-[#e8d7ce] dark:border-[#4a3b32] bg-[#fcf9f8] dark:bg-[#1c120d] p-6 sticky top-[65px] h-[calc(100vh-65px)]">
+<div class="flex flex-col gap-8">
+<div class="flex gap-3 items-center pb-4 border-b border-[#e8d7ce] dark:border-[#4a3b32]">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12" data-alt="User profile picture thumbnail" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC2GjHQABC2wzGV2vkgpGxi_mtELLAl-EjySPDOcBPxYaFrG3QEpzh4QLk5Lp9MlpC3whRRmvB53RJz-07VZ8w0xa6ob9U8dtB19hOZ8EW-MyEAxkRZNe7au6kFeDFvDUCny_OxbYJDZFlQ0rWgH7WSoRj7J6VQPqzwOhgrur-xyJowVEj-Z1sVC-E6XWzoir5veief37LDzkk5S0dPg5EaIF3gVsg8TNyFP0R4f6ABN7kZu-I1wGKAqt9Ty-WDM63qnV7Lw6-AUfI");'></div>
+<div class="flex flex-col">
+<h1 class="text-[#1c120d] dark:text-white text-base font-bold leading-normal">John Doe</h1>
+<p class="text-[#9c6549] text-sm font-normal leading-normal">Pizza Enthusiast</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg bg-primary/10 border-l-4 border-primary" href="#">
+<span class="material-symbols-outlined text-primary">person</span>
+<p class="text-primary text-sm font-bold leading-normal">Profile</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-[#f4ebe7] dark:hover:bg-[#2c221c] transition-colors group" href="#">
+<span class="material-symbols-outlined text-[#9c6549] group-hover:text-[#1c120d] dark:group-hover:text-white transition-colors">lock</span>
+<p class="text-[#1c120d] dark:text-[#e8d7ce] group-hover:text-[#1c120d] dark:group-hover:text-white text-sm font-medium leading-normal transition-colors">Security</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-[#f4ebe7] dark:hover:bg-[#2c221c] transition-colors group" href="addresses.html">
+<span class="material-symbols-outlined text-[#9c6549] group-hover:text-[#1c120d] dark:group-hover:text-white transition-colors">notifications</span>
+<p class="text-[#1c120d] dark:text-[#e8d7ce] group-hover:text-[#1c120d] dark:group-hover:text-white text-sm font-medium leading-normal transition-colors">Notifications</p>
+</a> 
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-[#f4ebe7] dark:hover:bg-[#2c221c] transition-colors group" href="payments.html">
+<span class="material-symbols-outlined text-[#9c6549] group-hover:text-[#1c120d] dark:group-hover:text-white transition-colors">credit_card</span>
+<p class="text-[#1c120d] dark:text-[#e8d7ce] group-hover:text-[#1c120d] dark:group-hover:text-white text-sm font-medium leading-normal transition-colors">Payment Methods</p>
+</a>
+</nav>
+</div>
+<div class="pt-4 mt-auto">
+<div class="p-4 bg-primary/5 rounded-xl border border-primary/10">
+<p class="text-xs text-[#9c6549] mb-2 font-medium">Need help with an order?</p>
+<button class="w-full text-xs font-bold text-primary border border-primary rounded-lg py-2 hover:bg-primary hover:text-white transition-colors">Contact Support</button>
+</div>
+</div>
+</aside>
+<main class="flex-1 min-w-0 bg-background-light dark:bg-background-dark p-4 md:p-8 lg:p-12 overflow-y-auto">
+<div class="max-w-4xl mx-auto space-y-8">
+<div class="flex flex-col gap-2">
+<h1 class="text-[#1c120d] dark:text-white text-3xl md:text-[32px] font-bold leading-tight tracking-tight">Personal Information</h1>
+<p class="text-[#9c6549] text-sm md:text-base font-normal leading-normal">Manage your personal details and pizza preferences.</p>
+</div>
+<section class="bg-white dark:bg-[#1c120d] rounded-xl border border-[#e8d7ce] dark:border-[#4a3b32] shadow-sm p-6">
+<div class="flex flex-col sm:flex-row gap-6 items-center sm:items-start justify-between">
+<div class="flex flex-col sm:flex-row items-center gap-6">
+<div class="relative group cursor-pointer">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-24 w-24 md:h-28 md:w-28 border-4 border-[#fcf9f8] dark:border-[#2c221c] shadow-md" data-alt="Large user avatar profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA-ktECahEkaUGf3woeidXCSChsNOrG5STf9JCtrgKMWRfgSg0QJ7AKXVrT72GYfS14lByHdg7zaBlfS8muViMOS3aQOIvc2y7CduN3EjA0JQTILv05XqWSvZ4_3hahf4rYVeyF7NQ8TjJORB9B4icBkTd6_dNfAyMzmyV5BiMeBjA8GnbKKqkYiflpTIhnYiVxoHoe80jiOGV77Txhabw91Ni-a95e20sZj3g1AXAOjDSxIVeOyDRpMXVAAG4YO-6PbvXDh0gBvmQ");'></div>
+<div class="absolute inset-0 rounded-full bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white">camera_alt</span>
+</div>
+</div>
+<div class="flex flex-col items-center sm:items-start">
+<p class="text-[#1c120d] dark:text-white text-xl md:text-[22px] font-bold leading-tight">John Doe</p>
+<p class="text-[#9c6549] text-base font-normal mb-3">john.doe@example.com</p>
+<span class="inline-flex items-center gap-1 rounded-full bg-green-100 dark:bg-green-900 px-2 py-1 text-xs font-semibold text-green-700 dark:text-green-300">
+<span class="material-symbols-outlined text-[14px]">verified</span> Verified Eater
+                                </span>
+</div>
+</div>
+<button class="flex items-center justify-center rounded-lg h-10 px-4 bg-[#f4ebe7] dark:bg-[#2c221c] text-[#1c120d] dark:text-[#e8d7ce] hover:bg-[#e8d7ce] dark:hover:bg-[#4a3b32] transition-colors text-sm font-bold tracking-[0.015em] w-full sm:w-auto">
+                        Change Photo
+                    </button>
+</div>
+</section>
+<section class="bg-white dark:bg-[#1c120d] rounded-xl border border-[#e8d7ce] dark:border-[#4a3b32] shadow-sm p-6 md:p-8">
+<h3 class="text-lg font-bold text-[#1c120d] dark:text-white mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">badge</span>
+                    Basic Details
+                </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<label class="flex flex-col gap-2">
+<span class="text-[#1c120d] dark:text-[#e8d7ce] text-sm font-medium">First Name</span>
+<input class="form-input w-full rounded-lg border border-[#e8d7ce] dark:border-[#4a3b32] bg-[#fcf9f8] dark:bg-[#2c221c] text-[#1c120d] dark:text-white h-12 px-4 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-[#9c6549]" type="text" value="John"/>
+</label>
+<label class="flex flex-col gap-2">
+<span class="text-[#1c120d] dark:text-[#e8d7ce] text-sm font-medium">Last Name</span>
+<input class="form-input w-full rounded-lg border border-[#e8d7ce] dark:border-[#4a3b32] bg-[#fcf9f8] dark:bg-[#2c221c] text-[#1c120d] dark:text-white h-12 px-4 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-[#9c6549]" type="text" value="Doe"/>
+</label>
+<label class="flex flex-col gap-2">
+<span class="text-[#1c120d] dark:text-[#e8d7ce] text-sm font-medium">Email Address</span>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#9c6549] text-xl">mail</span>
+<input class="form-input w-full rounded-lg border border-[#e8d7ce] dark:border-[#4a3b32] bg-[#fcf9f8] dark:bg-[#2c221c] text-[#1c120d] dark:text-white h-12 pl-10 pr-4 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-[#9c6549]" type="email" value="john.doe@example.com"/>
+</div>
+</label>
+<label class="flex flex-col gap-2">
+<span class="text-[#1c120d] dark:text-[#e8d7ce] text-sm font-medium">Phone Number</span>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#9c6549] text-xl">call</span>
+<input class="form-input w-full rounded-lg border border-[#e8d7ce] dark:border-[#4a3b32] bg-[#fcf9f8] dark:bg-[#2c221c] text-[#1c120d] dark:text-white h-12 pl-10 pr-4 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-[#9c6549]" type="tel" value="+1 (555) 012-3456"/>
+</div>
+</label>
+</div>
+<div class="border-t border-[#e8d7ce] dark:border-[#4a3b32] my-8"></div>
+<h3 class="text-lg font-bold text-[#1c120d] dark:text-white mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">local_pizza</span>
+                    Pizza Preferences
+                </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<label class="flex flex-col gap-2">
+<span class="text-[#1c120d] dark:text-[#e8d7ce] text-sm font-medium">Favorite Pizza Style</span>
+<select class="form-select w-full rounded-lg border border-[#e8d7ce] dark:border-[#4a3b32] bg-[#fcf9f8] dark:bg-[#2c221c] text-[#1c120d] dark:text-white h-12 px-4 focus:ring-2 focus:ring-primary focus:border-primary">
+<option>New York Style</option>
+<option selected="">Chicago Deep Dish</option>
+<option>Neapolitan</option>
+<option>Detroit Style</option>
+<option>Gluten Free</option>
+</select>
+</label>
+<div class="flex flex-col gap-3">
+<span class="text-[#1c120d] dark:text-[#e8d7ce] text-sm font-medium">Dietary Preferences</span>
+<div class="flex flex-wrap gap-3">
+<label class="inline-flex items-center gap-2 p-3 rounded-lg border border-[#e8d7ce] dark:border-[#4a3b32] cursor-pointer hover:bg-[#fcf9f8] dark:hover:bg-[#2c221c] transition-colors">
+<input class="form-checkbox text-primary rounded focus:ring-primary border-[#e8d7ce]" type="checkbox"/>
+<span class="text-sm text-[#1c120d] dark:text-white">Vegetarian</span>
+</label>
+<label class="inline-flex items-center gap-2 p-3 rounded-lg border border-[#e8d7ce] dark:border-[#4a3b32] cursor-pointer hover:bg-[#fcf9f8] dark:hover:bg-[#2c221c] transition-colors">
+<input checked="" class="form-checkbox text-primary rounded focus:ring-primary border-[#e8d7ce]" type="checkbox"/>
+<span class="text-sm text-[#1c120d] dark:text-white">Extra Cheese</span>
+</label>
+<label class="inline-flex items-center gap-2 p-3 rounded-lg border border-[#e8d7ce] dark:border-[#4a3b32] cursor-pointer hover:bg-[#fcf9f8] dark:hover:bg-[#2c221c] transition-colors">
+<input class="form-checkbox text-primary rounded focus:ring-primary border-[#e8d7ce]" type="checkbox"/>
+<span class="text-sm text-[#1c120d] dark:text-white">Spicy</span>
+</label>
+</div>
+</div>
+</div>
+<div class="flex flex-col-reverse sm:flex-row justify-end gap-4 mt-10">
+<button class="px-6 h-12 rounded-lg border border-[#e8d7ce] dark:border-[#4a3b32] text-[#1c120d] dark:text-white font-bold hover:bg-[#f4ebe7] dark:hover:bg-[#2c221c] transition-colors">
+                        Cancel
+                    </button>
+<button class="px-8 h-12 rounded-lg bg-primary text-white font-bold shadow-lg shadow-orange-500/30 hover:bg-orange-600 transition-colors flex items-center justify-center gap-2">
+<span>Save Changes</span>
+<span class="material-symbols-outlined text-sm">check</span>
+</button>
+</div>
+</section>
+<section class="bg-white dark:bg-[#1c120d] rounded-xl border border-[#e8d7ce] dark:border-[#4a3b32] shadow-sm p-6 md:p-8">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-bold text-[#1c120d] dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">lock_reset</span>
+                        Password &amp; Security
+                    </h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<label class="flex flex-col gap-2">
+<span class="text-[#1c120d] dark:text-[#e8d7ce] text-sm font-medium">Current Password</span>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#9c6549] text-xl">key</span>
+<input class="form-input w-full rounded-lg border border-[#e8d7ce] dark:border-[#4a3b32] bg-[#fcf9f8] dark:bg-[#2c221c] text-[#1c120d] dark:text-white h-12 pl-10 pr-4 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-[#9c6549]" placeholder="••••••••" type="password"/>
+</div>
+</label>
+<label class="flex flex-col gap-2">
+<span class="text-[#1c120d] dark:text-[#e8d7ce] text-sm font-medium">New Password</span>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#9c6549] text-xl">lock</span>
+<input class="form-input w-full rounded-lg border border-[#e8d7ce] dark:border-[#4a3b32] bg-[#fcf9f8] dark:bg-[#2c221c] text-[#1c120d] dark:text-white h-12 pl-10 pr-4 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-[#9c6549]" placeholder="At least 8 characters" type="password"/>
+</div>
+</label>
+<label class="flex flex-col gap-2">
+<span class="text-[#1c120d] dark:text-[#e8d7ce] text-sm font-medium">Confirm New Password</span>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#9c6549] text-xl">check_circle</span>
+<input class="form-input w-full rounded-lg border border-[#e8d7ce] dark:border-[#4a3b32] bg-[#fcf9f8] dark:bg-[#2c221c] text-[#1c120d] dark:text-white h-12 pl-10 pr-4 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-[#9c6549]" placeholder="Confirm new password" type="password"/>
+</div>
+</label>
+</div>
+<div class="flex justify-end mt-6 pt-6 border-t border-[#e8d7ce] dark:border-[#4a3b32]">
+<button class="px-6 h-12 rounded-lg bg-[#1c120d] dark:bg-[#fcf9f8] text-white dark:text-[#1c120d] font-bold shadow-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">save</span>
+<span>Update Password</span>
+</button>
+</div>
+</section>
+</div>
+</main>
+</div>
+
+<script src="app.js"></script>
+</body></html>

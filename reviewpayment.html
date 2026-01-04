@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Checkout - Review &amp; Pay</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2590d",
+                        "background-light": "#f8f6f5",
+                        "background-dark": "#221610",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#2f251f",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e6dbd6;
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #4a3b32;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#1c120d] dark:text-[#fcf9f8] min-h-screen flex flex-col">
+<header class="sticky top-0 z-50 w-full border-b border-[#f4ebe7] dark:border-[#3a2d26] bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur-sm px-6 py-3">
+<div class="mx-auto max-w-[1200px] flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center size-10 rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-2xl">local_pizza</span>
+</div>
+<h2 class="text-xl font-extrabold tracking-tight text-[#1c120d] dark:text-white">PizzaSlice</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8 font-medium text-sm text-[#9c6549] dark:text-[#d1b3a4]">
+<a class="hover:text-primary transition-colors" href="menu.html">Menu</a>
+<a class="hover:text-primary transition-colors" href="#">Offers</a>
+<a class="hover:text-primary transition-colors" href="#">Restaurants</a>
+<a class="text-primary font-bold" href="#">Cart (2)</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden sm:flex items-center justify-center rounded-lg h-9 px-4 bg-primary/10 hover:bg-primary/20 text-primary text-sm font-bold transition-colors">
+                    Track Order
+                </button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-white dark:border-[#3a2d26] shadow-sm" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDJk4sPOGd7eOCoXyjMMd7Ii_qyAFKbaxCZoxJXvP75IR1W52HVhPPB2Ahh3V_tgkrQw9WQWFexceyzCzUlFn6Fn_8405D6W_3dbJdFyM348LfmB9AoYx5uHjFqHDlsuSmU20o4mVB79HM7hBF45yVD_22oRjCRhPJsUqaKpEndWiIQ_ybF2ISiXnNWRQ4aCoAIpXF1quyQYa8HsWIpzVoY2qOLJo8WyCwqipF4n3vECqlG_vOuN0qRqNY7kSJ5_c9DVpTlrDxqArg");'></div>
+</div>
+</div>
+</header>
+<main class="flex-grow w-full px-4 py-8 md:px-8">
+<div class="mx-auto max-w-[1200px]">
+<div class="mb-8">
+<h1 class="text-3xl md:text-4xl font-black leading-tight tracking-tight mb-2">Review &amp; Pay</h1>
+<p class="text-[#9c6549] dark:text-[#d1b3a4] text-base md:text-lg">Complete your order details below</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<div class="lg:col-span-8 space-y-8">
+<section class="bg-surface-light dark:bg-surface-dark rounded-2xl shadow-sm border border-[#f4ebe7] dark:border-[#3a2d26] overflow-hidden">
+<div class="px-6 py-4 border-b border-[#f4ebe7] dark:border-[#3a2d26] flex justify-between items-center">
+<h2 class="text-xl font-bold">Your Order</h2>
+<a class="text-sm font-bold text-primary hover:underline" href="#">Add items</a>
+</div>
+<div id="orderItems" class="divide-y divide-[#f4ebe7] dark:divide-[#3a2d26]">
+  <div id="emptyOrder" class="p-6 text-center text-gray-500">Your order is empty. <a class="text-primary font-bold hover:underline" href="menu.html">Add items</a></div>
+</div>
+</section>
+<section class="bg-surface-light dark:bg-surface-dark rounded-2xl shadow-sm border border-[#f4ebe7] dark:border-[#3a2d26] p-6">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-bold flex items-center gap-2 text-[#1c120d] dark:text-white">
+<span class="material-symbols-outlined text-primary">contact_mail</span>
+                            Contact &amp; Delivery
+                        </h2>
+</div>
+<div class="mb-8">
+<h3 class="text-sm font-bold text-[#1c120d] dark:text-white mb-4 flex items-center gap-2">
+<span class="size-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs">1</span>
+                            Contact Information
+                        </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<div class="space-y-1.5">
+<label class="text-xs font-bold text-[#9c6549] dark:text-[#d1b3a4] uppercase tracking-wide">Full Name</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-gray-400 text-[18px]">person</span>
+</span>
+<input class="block w-full rounded-lg border-[#e6dbd6] dark:border-[#4a3b32] bg-[#fcf9f8] dark:bg-[#221610] py-2.5 pl-10 pr-3 text-sm text-[#1c120d] dark:text-white focus:border-primary focus:ring-primary placeholder-gray-400 dark:placeholder-gray-600 transition-shadow" type="text" value="Alex Johnson"/>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="text-xs font-bold text-[#9c6549] dark:text-[#d1b3a4] uppercase tracking-wide">Phone Number</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-gray-400 text-[18px]">call</span>
+</span>
+<input class="block w-full rounded-lg border-[#e6dbd6] dark:border-[#4a3b32] bg-[#fcf9f8] dark:bg-[#221610] py-2.5 pl-10 pr-3 text-sm text-[#1c120d] dark:text-white focus:border-primary focus:ring-primary placeholder-gray-400 dark:placeholder-gray-600 transition-shadow" type="tel" value="+1 (555) 123-4567"/>
+</div>
+</div>
+<div class="md:col-span-2 space-y-1.5">
+<label class="text-xs font-bold text-[#9c6549] dark:text-[#d1b3a4] uppercase tracking-wide">Email Address</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-gray-400 text-[18px]">mail</span>
+</span>
+<input class="block w-full rounded-lg border-[#e6dbd6] dark:border-[#4a3b32] bg-[#fcf9f8] dark:bg-[#221610] py-2.5 pl-10 pr-3 text-sm text-[#1c120d] dark:text-white focus:border-primary focus:ring-primary placeholder-gray-400 dark:placeholder-gray-600 transition-shadow" type="email" value="alex.johnson@pizza.com"/>
+</div>
+</div>
+</div>
+</div>
+<div class="border-t border-[#f4ebe7] dark:border-[#3a2d26] my-6"></div>
+<div>
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-sm font-bold text-[#1c120d] dark:text-white flex items-center gap-2">
+<span class="size-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs">2</span>
+                                Delivery Address
+                            </h3>
+<button class="text-xs font-bold text-primary hover:underline flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">add</span> Add New
+                            </button>
+</div>
+<div class="space-y-3">
+<label class="group relative block rounded-xl border-2 border-primary/20 bg-primary/5 p-4 shadow-sm cursor-pointer transition-all hover:bg-primary/10">
+<div class="flex items-start gap-3">
+<div class="mt-0.5">
+<input checked="" class="size-5 border-gray-300 text-primary focus:ring-primary" name="delivery_address" type="radio"/>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="text-sm font-bold text-[#1c120d] dark:text-white">Home</span>
+<span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 dark:bg-green-900/30 dark:text-green-400">Default</span>
+</div>
+<p class="text-sm text-[#5c443b] dark:text-[#d1b3a4] leading-relaxed">
+                                            123 Cheese Avenue, Apartment 4B<br/>Brooklyn, NY 11201
+                                        </p>
+</div>
+<button class="text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+</label>
+<label class="group relative block rounded-xl border border-[#e6dbd6] dark:border-[#4a3b32] bg-white dark:bg-[#2f251f] p-4 shadow-sm cursor-pointer transition-all hover:border-primary/30 hover:bg-[#fcf9f8] dark:hover:bg-[#362b25]">
+<div class="flex items-start gap-3">
+<div class="mt-0.5">
+<input class="size-5 border-gray-300 text-primary focus:ring-primary" name="delivery_address" type="radio"/>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="text-sm font-bold text-[#1c120d] dark:text-white">Office</span>
+</div>
+<p class="text-sm text-[#5c443b] dark:text-[#d1b3a4] leading-relaxed">
+                                            456 Tech Park, Building C<br/>Manhattan, NY 10001
+                                        </p>
+</div>
+<button class="text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+</label>
+</div>
+<div class="mt-5">
+<label class="block text-xs font-bold text-[#9c6549] dark:text-[#d1b3a4] uppercase tracking-wide mb-2">Delivery Instructions</label>
+<textarea class="block w-full rounded-lg border-[#e6dbd6] dark:border-[#4a3b32] bg-[#fcf9f8] dark:bg-[#221610] p-3 text-sm text-[#1c120d] dark:text-white focus:border-primary focus:ring-primary placeholder-gray-400 dark:placeholder-gray-600 transition-shadow" placeholder="e.g. Leave at door, ring doorbell..." rows="2"></textarea>
+</div>
+</div>
+</section>
+<section class="bg-surface-light dark:bg-surface-dark rounded-2xl shadow-sm border border-[#f4ebe7] dark:border-[#3a2d26] p-6">
+<h2 class="text-xl font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">payments</span>
+                            Payment Method
+                        </h2>
+<div class="space-y-3">
+<label class="group relative flex cursor-pointer rounded-xl border border-primary bg-primary/5 p-4 shadow-sm transition-all hover:bg-primary/10">
+<div class="flex w-full items-center gap-4">
+<div class="flex items-center">
+<input checked="" value="card" id="pm_card" class="size-5 border-gray-300 text-primary focus:ring-primary" name="payment_method" type="radio"/>
+</div>
+<div class="rounded-lg bg-white p-2 text-primary shadow-sm dark:bg-surface-dark">
+<span class="material-symbols-outlined">credit_card</span>
+</div>
+<div class="flex-1">
+<p class="font-bold text-[#1c120d] dark:text-white">Credit / Debit Card</p>
+<p class="text-xs text-[#9c6549] dark:text-[#d1b3a4]">Powered by Razorpay</p>
+</div>
+<div class="flex gap-2 opacity-60 grayscale group-hover:grayscale-0 transition-all">
+<img class="h-6" data-alt="Mastercard logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzaU1P9bc8OaQgfri6oWRUam1J_mVtOPdffRyOguZUBsOahsTfFaWtzB1i69oRDpafI7kryi061l-KgCxlckbkEBBfhXDzNCHWDCXmhq3AkMzJoIZtqIEkPKb0kzFmOKejnX0OQ0mU4ZBfXRKeO68Zw7wVhFJ0DeI1Aopog53kVCzmrVicOeRs3cXYUmKp6-VzvUbYzBPc_RDMJJCt_wZY9s5Z1uaGuZhXKXcxf-5v1XjTTLoxb7gBhL1V649msA22pHn_9D-vT0o"/>
+<img class="h-6" data-alt="Visa logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtrHDc845Zg7h8YnKmqZOAJDeNdCFkMbVdepEmWAUnNkNtl3Xq78AcW3KSxWWZtfMusdpaC1F4gOa3NqjC5Z0pAov64_QadKu9vAUDLXKsn-C6EfmIJPIahsSWNyZ1aAiU3th2mFggvuGcTCPD-URGtOkFK3s7sxk5TU8f-I0rIwE1G1_jsOzCUE6EQJFPolrYkeiHEs-JNNoXUpULnbuc_kmE58aVlqW-GtAW1ENGz6jJc8J04ZXzYB7YOpCqoAvZ5D8tH5hc8p4"/>
+</div>
+</div>
+</label>
+<label class="group relative flex cursor-pointer rounded-xl border border-[#e6dbd6] dark:border-[#4a3b32] bg-white dark:bg-[#362b25] p-4 shadow-sm transition-all hover:border-primary/50">
+<div class="flex w-full items-center gap-4">
+<div class="flex items-center">
+<input value="upi" id="pm_upi" class="size-5 border-gray-300 text-primary focus:ring-primary" name="payment_method" type="radio"/>
+</div>
+<div class="rounded-lg bg-[#f4ebe7] dark:bg-[#4a3b32] p-2 text-[#9c6549] dark:text-[#d1b3a4] shadow-sm">
+<span class="material-symbols-outlined">smartphone</span>
+</div>
+<div class="flex-1">
+<p class="font-bold text-[#1c120d] dark:text-white">UPI / Wallets</p>
+<p class="text-xs text-[#9c6549] dark:text-[#d1b3a4]">Google Pay, PhonePe, Paytm</p>
+</div>
+</div>
+</label>
+<label class="group relative flex cursor-pointer rounded-xl border border-[#e6dbd6] dark:border-[#4a3b32] bg-white dark:bg-[#362b25] p-4 shadow-sm transition-all hover:border-primary/50">
+<div class="flex w-full items-center gap-4">
+<div class="flex items-center">
+<input value="cod" id="pm_cod" class="size-5 border-gray-300 text-primary focus:ring-primary" name="payment_method" type="radio"/>
+</div>
+<div class="rounded-lg bg-[#f4ebe7] dark:bg-[#4a3b32] p-2 text-[#9c6549] dark:text-[#d1b3a4] shadow-sm">
+<span class="material-symbols-outlined">attach_money</span>
+</div>
+<div class="flex-1">
+<p class="font-bold text-[#1c120d] dark:text-white">Cash on Delivery</p>
+<p class="text-xs text-[#9c6549] dark:text-[#d1b3a4]">Pay with cash upon arrival</p>
+</div>
+</div>
+</label>
+</div>
+</section>
+</div>
+<div class="lg:col-span-4 relative">
+<div class="sticky top-24 space-y-6">
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl shadow-lg border border-[#f4ebe7] dark:border-[#3a2d26] overflow-hidden">
+<div class="p-6">
+<h3 class="text-lg font-extrabold text-[#1c120d] dark:text-white mb-6">Bill Details</h3>
+<div class="space-y-3 text-sm">
+<div class="flex justify-between text-[#5c443b] dark:text-[#d1b3a4]">
+<span>Item Total</span>
+<span id="itemTotal" class="font-medium text-[#1c120d] dark:text-white">$0.00</span>
+</div>
+<div class="flex justify-between text-[#5c443b] dark:text-[#d1b3a4]">
+<span class="flex items-center gap-1">Delivery Fee <span class="material-symbols-outlined text-[14px] text-gray-400 cursor-help" title="Distance based fee">info</span></span>
+<span id="deliveryFee" class="font-medium text-[#1c120d] dark:text-white">$0.00</span>
+</div>
+<div class="flex justify-between text-[#5c443b] dark:text-[#d1b3a4]">
+<span>Taxes &amp; Charges</span>
+<span id="taxes" class="font-medium text-[#1c120d] dark:text-white">$0.00</span>
+</div>
+<div class="flex justify-between text-green-600 dark:text-green-400 font-medium py-2">
+<span>Discount (WELCOME50)</span>
+<span id="discount">-$0.00</span>
+</div>
+</div>
+<div class="my-4 border-t border-dashed border-[#e6dbd6] dark:border-[#4a3b32]"></div>
+<div class="flex justify-between items-center mb-6">
+<span class="text-base font-bold text-[#1c120d] dark:text-white">To Pay</span>
+<span id="toPay" class="text-2xl font-black text-[#1c120d] dark:text-white">$0.00</span>
+</div>
+<button id="payBtn" class="w-full flex items-center justify-center gap-2 rounded-xl bg-primary hover:bg-[#d94e0b] active:scale-[0.98] transition-all text-white font-bold text-lg py-4 shadow-lg shadow-orange-500/20">
+<span id="payAmount">Pay $0.00</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<div class="mt-4 flex items-center justify-center gap-2 text-xs text-[#9c6549] dark:text-[#8a7268]">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+<span>Guaranteed Safe &amp; Secure Checkout</span>
+</div>
+</div>
+<div class="bg-[#fcf9f8] dark:bg-[#362b25] px-6 py-4 border-t border-[#f4ebe7] dark:border-[#3a2d26]">
+<div class="flex gap-2">
+<div class="relative flex-1">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+<span class="material-symbols-outlined text-gray-400 text-lg">local_offer</span>
+</div>
+<input class="block w-full rounded-lg border-0 py-2.5 pl-10 pr-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6 dark:bg-[#2f251f] dark:text-white dark:ring-[#4a3b32]" placeholder="Enter promo code" type="text"/>
+</div>
+<button class="rounded-lg bg-[#1c120d] dark:bg-white px-4 py-2 text-sm font-bold text-white dark:text-black hover:bg-opacity-90 dark:hover:bg-gray-200">Apply</button>
+</div>
+</div>
+</div>
+<div class="rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/30 p-4 flex items-start gap-3">
+<span class="material-symbols-outlined text-blue-600 dark:text-blue-400">verified_user</span>
+<div>
+<h4 class="text-sm font-bold text-blue-900 dark:text-blue-100">100% Genuine Reviews</h4>
+<p class="text-xs text-blue-700 dark:text-blue-300 mt-1">We value your feedback. Review your order after delivery to earn points.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="border-t border-[#f4ebe7] dark:border-[#3a2d26] bg-white dark:bg-surface-dark mt-auto py-8">
+<div class="mx-auto max-w-[1200px] px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-[#9c6549] dark:text-[#8a7268]">
+<p>© 2023 PizzaSlice. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors" href="#">Help Center</a>
+</div>
+</div>
+</footer>
+<script>
+(function(){
+  function formatCurrency(n){ return '$'+Number(n).toFixed(2); }
+  function getCart(){ try{ return JSON.parse(localStorage.getItem('cart')||'[]'); }catch(e){ return []; } }
+  const orderItemsEl = document.getElementById('orderItems');
+  const itemTotalEl = document.getElementById('itemTotal');
+  const deliveryEl = document.getElementById('deliveryFee');
+  const taxesEl = document.getElementById('taxes');
+  const discountEl = document.getElementById('discount');
+  const toPayEl = document.getElementById('toPay');
+  const payBtn = document.getElementById('payBtn');
+  const payAmountSpan = document.getElementById('payAmount');
+  const DELIVERY = Number((deliveryEl?.textContent||'$5').replace(/[^0-9.]/g,'')) || 5.00;
+  const DEFAULT_PIZZA_IMAGE = 'https://images.unsplash.com/photo-1601924928572-3f03f6b6f45a?auto=format&fit=crop&w=1200&q=80';
+
+  function render(){
+    const cart = getCart();
+    orderItemsEl.innerHTML = '';
+    if (!cart || !cart.length){
+      orderItemsEl.innerHTML = '<div class="p-6 text-center text-gray-500">Your order is empty. <a class="text-primary font-bold hover:underline" href="menu.html">Add items</a></div>';
+      if (payBtn){ payBtn.disabled = true; payBtn.classList.add('opacity-60','pointer-events-none'); }
+      if (toPayEl) toPayEl.textContent = formatCurrency(0);
+      if (payAmountSpan) payAmountSpan.textContent = 'Pay $0.00';
+      if (itemTotalEl) itemTotalEl.textContent = formatCurrency(0);
+      if (taxesEl) taxesEl.textContent = formatCurrency(0);
+      return;
+    }
+    cart.forEach(it=>{
+      const div = document.createElement('div');
+      div.className = 'flex gap-4 p-6 hover:bg-[#fcf9f8] dark:hover:bg-[#362b25] transition-colors';
+      const imgStyle = `background-image: url('${it.image || DEFAULT_PIZZA_IMAGE}')`;
+      div.innerHTML = `<div class="shrink-0"><div class="bg-center bg-no-repeat bg-cover rounded-xl size-20 md:size-24 shadow-sm" style="${imgStyle}"></div></div>
+      <div class="flex flex-1 flex-col justify-between">
+        <div>
+          <div class="flex justify-between items-start mb-1">
+            <h3 class="text-base md:text-lg font-bold text-[#1c120d] dark:text-white">${it.name}</h3>
+            <p class="text-base font-bold text-[#1c120d] dark:text-white">${formatCurrency(it.price)}</p>
+          </div>
+          <p class="text-[#9c6549] dark:text-[#d1b3a4] text-sm leading-normal">Qty: ${it.qty}</p>
+        </div>
+      </div>`;
+      orderItemsEl.appendChild(div);
+    });
+
+    const subtotal = +(cart.reduce((s,i)=> s + Number(i.price||0)*(i.qty||1), 0)).toFixed(2);
+    const tax = +(subtotal * 0.08).toFixed(2);
+    const delivery = DELIVERY;
+    const discount = 0;
+    const total = +(subtotal + tax + delivery - discount).toFixed(2);
+
+    if (itemTotalEl) itemTotalEl.textContent = formatCurrency(subtotal);
+    if (taxesEl) taxesEl.textContent = formatCurrency(tax);
+    if (discountEl) discountEl.textContent = '-'+formatCurrency(discount);
+    if (deliveryEl) deliveryEl.textContent = formatCurrency(delivery);
+    if (toPayEl) toPayEl.textContent = formatCurrency(total);
+    if (payAmountSpan) payAmountSpan.textContent = 'Pay '+formatCurrency(total);
+    if (payBtn){ payBtn.disabled = false; payBtn.classList.remove('opacity-60','pointer-events-none'); }
+  }
+
+  document.addEventListener('DOMContentLoaded', render);
+  window.addEventListener('storage', function(e){ if (e.key === 'cart') render(); });
+
+  payBtn?.addEventListener('click', function(){
+    const cart = getCart();
+    if (!cart || !cart.length){ alert('Your cart is empty. Add items before paying.'); return; }
+    const selected = document.querySelector('input[name="payment_method"]:checked')?.value || 'card';
+    if (selected === 'upi'){
+      // Navigate to UPI page; the UPI page will compute the total from cart
+      window.location.href = 'upi.html';
+      return;
+    }
+    if (selected === 'cod'){
+      // Demo: place order as COD, clear cart and redirect to menu
+      alert('Order placed as Cash on Delivery. Thank you!');
+      localStorage.removeItem('cart');
+      window.location.href = 'menu.html';
+      return;
+    }
+    // For card and others, keep placeholder behavior for now
+    alert('Payment method "'+selected+'" selected. Payment flow not implemented in this demo. Order total: '+ (toPayEl?.textContent||''));
+  });
+})();
+</script>
+<script src="app.js"></script>
+</body></html>

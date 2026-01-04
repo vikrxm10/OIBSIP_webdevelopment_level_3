@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Manage Payment Methods - PizzaSlice</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2590d",
+                        "background-light": "#f8f6f5",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#1c120d] dark:text-white antialiased overflow-x-hidden">
+<div class="relative flex min-h-screen w-full flex-col group/design-root">
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e6dbd6] dark:border-[#3a2820] bg-background-light dark:bg-background-dark px-10 py-3 shadow-sm">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-[#1c120d] dark:text-white">
+<div class="size-8 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M36.7273 44C33.9891 44 31.6043 39.8386 30.3636 33.69C29.123 39.8386 26.7382 44 24 44C21.2618 44 18.877 39.8386 17.6364 33.69C16.3957 39.8386 14.0109 44 11.2727 44C7.25611 44 4 35.0457 4 24C4 12.9543 7.25611 4 11.2727 4C14.0109 4 16.3957 8.16144 17.6364 14.31C18.877 8.16144 21.2618 4 24 4C26.7382 4 29.123 8.16144 30.3636 14.31C31.6043 8.16144 33.9891 4 36.7273 4C40.7439 4 44 12.9543 44 24C44 35.0457 40.7439 44 36.7273 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-[#1c120d] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">PizzaSlice</h2>
+</div>
+<nav class="flex items-center gap-9 hidden md:flex">
+<a class="text-[#1c120d] dark:text-gray-200 text-sm font-medium leading-normal hover:text-primary transition-colors" href="menu.html">Menu</a>
+<a class="text-[#1c120d] dark:text-gray-200 text-sm font-medium leading-normal hover:text-primary transition-colors" href="deals.html">Deals</a>
+<a class="text-[#1c120d] dark:text-gray-200 text-sm font-medium leading-normal hover:text-primary transition-colors" href="restaurants.html">Restaurants</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<label class="flex flex-col min-w-40 !h-10 max-w-64 hidden sm:flex">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-[#f4ebe7] dark:bg-[#3a2820]">
+<div class="text-[#9c6549] dark:text-[#ccb0a0] flex border-none items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#1c120d] dark:text-white focus:outline-0 focus:ring-0 border-none bg-transparent focus:border-none h-full placeholder:text-[#9c6549] dark:placeholder:text-[#ccb0a0] px-4 rounded-l-none border-l-0 pl-2 text-sm font-normal leading-normal" placeholder="Search for pizza..." value=""/>
+</div>
+</label>
+<a href="user-settings.html" class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-white dark:ring-[#3a2820] shadow-sm cursor-pointer" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAcU3hpsNW8X-d_UbdU0qatLFTJNPppvR25KIQFYaKqE12T0BF8cTNKgZ8ConNzFxxAjOMccqEwCFy5g8pqbjlpfxFFL933BqUvCW5A6itZpbPEOHGGoisrHvETDi6kOACWAmpLs_FYepATDW-I-yNCv77poMRiu1svyFWLtbixs8IrJRzXFQtTbiF-uoN2wvddvfJyWfOH-w3HOdtOxDLEx1XT-fxIZq6kfspfin9xmW_fQLtXTiEghJfYE8d0I2jAOqfJpgWFXrY");'></a>
+</div>
+</header>
+<div class="layout-container flex grow flex-col md:flex-row max-w-[1440px] mx-auto w-full">
+<aside class="w-full md:w-64 lg:w-72 bg-background-light dark:bg-background-dark p-6 border-b md:border-b-0 md:border-r border-[#e6dbd6] dark:border-[#3a2820] shrink-0">
+<div class="flex flex-col gap-8 sticky top-24">
+<div class="flex flex-col">
+<h1 class="text-[#1c120d] dark:text-white text-xl font-bold leading-normal">Account</h1>
+<p class="text-[#9c6549] dark:text-[#ccb0a0] text-sm font-normal leading-normal">Manage your preferences</p>
+</div>
+<nav class="flex flex-col gap-2">
+
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#f4ebe7] dark:hover:bg-[#3a2820] transition-colors group" href="#">
+<span class="material-symbols-outlined text-[#1c120d] dark:text-gray-300 group-hover:text-primary">security</span>
+<p class="text-[#1c120d] dark:text-gray-300 text-sm font-medium leading-normal group-hover:text-primary">Security</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#f4ebe7] dark:hover:bg-[#3a2820] transition-colors group" href="addresses.html">
+<span class="material-symbols-outlined text-[#1c120d] dark:text-gray-300 group-hover:text-primary">notifications</span>
+<p class="text-[#1c120d] dark:text-gray-300 text-sm font-medium leading-normal group-hover:text-primary">Notifications</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#f4ebe7] dark:hover:bg-[#3a2820] transition-colors group" href="#">
+<span class="material-symbols-outlined text-[#1c120d] dark:text-gray-300 group-hover:text-primary">location_on</span>
+<p class="text-[#1c120d] dark:text-gray-300 text-sm font-medium leading-normal group-hover:text-primary">Saved Addresses</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 dark:bg-primary/20 transition-colors" href="payments.html">
+<span class="material-symbols-outlined text-primary fill-current">credit_card</span>
+<p class="text-primary text-sm font-bold leading-normal">Payment Methods</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#f4ebe7] dark:hover:bg-[#3a2820] transition-colors group" href="user-settings.html">
+<span class="material-symbols-outlined text-[#1c120d] dark:text-gray-300 group-hover:text-primary">person</span>
+<p class="text-[#1c120d] dark:text-gray-300 text-sm font-medium leading-normal group-hover:text-primary">Profile</p>
+</a>
+</nav>
+</div>
+</aside>
+<main class="flex-1 px-4 md:px-12 py-8 bg-background-light dark:bg-background-dark min-h-[calc(100vh-80px)]">
+<div class="max-w-[800px] mx-auto flex flex-col gap-8">
+<div class="flex flex-col gap-3">
+<h1 class="text-[#1c120d] dark:text-white text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]">Manage Payment Methods</h1>
+<p class="text-[#9c6549] dark:text-[#ccb0a0] text-base font-normal leading-normal max-w-xl">
+                            Your payment details are stored securely and encrypted. We use industry-standard security protocols to keep your data safe.
+                        </p>
+</div>
+<div id="paymentsList" class="flex flex-col gap-4">
+<div class="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white dark:bg-[#2a1c15] p-5 rounded-xl border border-[#e6dbd6] dark:border-[#3a2820] shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat bg-contain h-10 w-16 shrink-0 rounded bg-white border border-gray-100 p-1" data-alt="Visa Card Logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCMNYvvqX-azON0WP7fusvfzSQeX5-6_Fh2x1SPUr-VdnXKSHP0E3iZmMq5y_PoB5hnJujYHh5FEX0WAgF18U2PfWefXn4SDoyuZ0CC4cFL2ALIsvTPGtI-CqiFoRLHLC0KPdhGYjZZGz69dhIzuJiUBUt-6_VmXbTfkvrTdpA728l6DzWXOOW_OFEwuPId4oUGhoWg5sfE7MN3dlLy50k5ySwBxyG5OUagy7RzpDh5vN2fbJXeY385Mg2zOtNSYNJlEzM9ALanwNQ");'></div>
+<div class="flex flex-col justify-center">
+<div class="flex items-center gap-2">
+<p class="text-[#1c120d] dark:text-white text-base font-bold leading-normal">Visa ending in 4242</p>
+<span class="inline-flex items-center rounded-full bg-primary/10 dark:bg-primary/20 px-2 py-0.5 text-xs font-bold text-primary">
+                                            Default
+                                        </span>
+</div>
+<p class="text-[#9c6549] dark:text-[#ccb0a0] text-sm font-normal leading-normal">Expires 12/25</p>
+</div>
+</div>
+<div class="flex items-center gap-2 sm:self-center self-end">
+<button aria-label="Edit" class="p-2 text-[#9c6549] dark:text-[#ccb0a0] hover:bg-[#f4ebe7] dark:hover:bg-[#3a2820] rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button aria-label="Delete" class="p-2 text-[#9c6549] dark:text-[#ccb0a0] hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<div class="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white dark:bg-[#2a1c15] p-5 rounded-xl border border-[#e6dbd6] dark:border-[#3a2820] shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat bg-contain h-10 w-16 shrink-0 rounded bg-white border border-gray-100 p-1" data-alt="Mastercard Logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDAhT1n0Ri_WZnByAhdtVxRT38RW7pyQZw_5A-Kl8jvi_rEnER9mFGH6JqpBmiEKRzUmWNBlPn4-oFCdH9YZRrVrUMqIAVw3ezgxOTvYM3R0tv1jM94XPcBXz5AFZnrSVd8bMU28bn7bWDI_0PeVhuTQXjq1hO704P0-_yXa5MzT2qB1QVWo-qnKzClKqtK9zXfuWPlanwwCSgBiOy0ZEDJe6HDPxSDIhUVnDfiSxqQg72vEPm9Ak4-zeiLMf-IX25HDOR49gZqUok");'></div>
+<div class="flex flex-col justify-center">
+<p class="text-[#1c120d] dark:text-white text-base font-bold leading-normal">Mastercard ending in 8899</p>
+<p class="text-[#9c6549] dark:text-[#ccb0a0] text-sm font-normal leading-normal">Expires 09/24</p>
+</div>
+</div>
+<div class="flex items-center gap-3 sm:self-center self-end w-full sm:w-auto justify-end">
+<button class="text-sm font-medium text-[#1c120d] dark:text-gray-200 hover:text-primary dark:hover:text-primary transition-colors hidden sm:block">Make Default</button>
+<div class="w-px h-4 bg-gray-200 dark:bg-gray-700 hidden sm:block"></div>
+<button aria-label="Edit" class="p-2 text-[#9c6549] dark:text-[#ccb0a0] hover:bg-[#f4ebe7] dark:hover:bg-[#3a2820] rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button aria-label="Delete" class="p-2 text-[#9c6549] dark:text-[#ccb0a0] hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+<button class="sm:hidden w-full py-2 text-sm font-medium text-primary border border-primary/30 rounded-lg bg-primary/5">Make Default</button>
+</div>
+<div class="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white dark:bg-[#2a1c15] p-5 rounded-xl border border-[#e6dbd6] dark:border-[#3a2820] shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat bg-contain h-10 w-16 shrink-0 rounded bg-white border border-gray-100 p-1" data-alt="Google Pay Logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD9QvNoWRjvyBf8NQwaQ6ddtSnup8AboqbD2vjWNawSDlVSylyAaNoJq9VQg0Aw_RRnOAJWxp8ZukNyV89ozsZIyC22-r9eY_F9b07NZSgQ6cjRHFm8OniqC1XWjmzJ0bfCSTBVC4TXuSVnD_2-z96Y0fL1N4L9miSAjDaHBSzsvmpMt7xd4HZ3v27AmlcJCkjcTCctW1IdqPojE0CgtXx-8IWhkMOprX4GVQz29PhEpGheYtfVo9fK2Ysyb-pYUeehtchqLSsny2Q");'></div>
+<div class="flex flex-col justify-center">
+<p class="text-[#1c120d] dark:text-white text-base font-bold leading-normal">Google Pay (UPI)</p>
+<p class="text-[#9c6549] dark:text-[#ccb0a0] text-sm font-normal leading-normal">pizza_lover@okaxis</p>
+</div>
+</div>
+<div class="flex items-center gap-3 sm:self-center self-end w-full sm:w-auto justify-end">
+<button class="text-sm font-medium text-[#1c120d] dark:text-gray-200 hover:text-primary dark:hover:text-primary transition-colors hidden sm:block">Make Default</button>
+<div class="w-px h-4 bg-gray-200 dark:bg-gray-700 hidden sm:block"></div>
+<button aria-label="Delete" class="p-2 text-[#9c6549] dark:text-[#ccb0a0] hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+<button class="sm:hidden w-full py-2 text-sm font-medium text-primary border border-primary/30 rounded-lg bg-primary/5">Make Default</button>
+</div>
+<button aria-label="Add New Payment" class="group flex items-center justify-center gap-3 w-full p-6 border-2 border-dashed border-[#e6dbd6] dark:border-[#3a2820] rounded-xl hover:border-primary/50 dark:hover:border-primary/50 hover:bg-white dark:hover:bg-[#2a1c15] transition-all cursor-pointer">
+<div class="size-10 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors text-primary">
+<span class="material-symbols-outlined text-2xl">add</span>
+</div>
+<span class="text-[#1c120d] dark:text-white font-bold text-lg">Add New Payment Method</span>
+</button>
+</div>
+<div class="flex items-center justify-center gap-2 py-4 opacity-70">
+<span class="material-symbols-outlined text-[#9c6549] dark:text-[#ccb0a0] text-lg">lock</span>
+<p class="text-[#9c6549] dark:text-[#ccb0a0] text-sm font-normal">Your payment information is encrypted and secure.</p>
+</div>
+</div>
+</main>
+</div>
+</div>
+<script src="app.js"></script>
+</body></html>

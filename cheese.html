@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PizzaCraft - Cheese Selection</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2590d",
+                        "background-light": "#f8f6f5",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for cleaner look if needed */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#1c120d] dark:text-[#fcf9f8] min-h-screen flex flex-col overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f4ebe7] dark:border-white/10 px-4 md:px-10 py-3 bg-white dark:bg-[#1c120d]">
+<div class="flex items-center gap-4 text-[#1c120d] dark:text-white">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M36.7273 44C33.9891 44 31.6043 39.8386 30.3636 33.69C29.123 39.8386 26.7382 44 24 44C21.2618 44 18.877 39.8386 17.6364 33.69C16.3957 39.8386 14.0109 44 11.2727 44C7.25611 44 4 35.0457 4 24C4 12.9543 7.25611 4 11.2727 4C14.0109 4 16.3957 8.16144 17.6364 14.31C18.877 8.16144 21.2618 4 24 4C26.7382 4 29.123 8.16144 30.3636 14.31C31.6043 8.16144 33.9891 4 36.7273 4C40.7439 4 44 12.9543 44 24C44 35.0457 40.7439 44 36.7273 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">PizzaCraft</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="hidden md:flex items-center gap-9">
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="menu.html">Menu</a>
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Deals</a>
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Tracker</a>
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Rewards</a>
+</div>
+<div class="flex gap-2">
+<button class="hidden sm:flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary hover:bg-primary/90 transition-colors text-[#fcf9f8] text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Sign In</span>
+</button>
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-[#f4ebe7] hover:bg-[#e8d7ce] dark:bg-white/10 dark:hover:bg-white/20 transition-colors text-[#1c120d] dark:text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
+<span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-grow w-full px-4 md:px-10 py-6 max-w-[1280px] mx-auto">
+<!-- Progress Stepper -->
+<div class="mb-8">
+<div class="flex flex-col gap-3">
+<div class="flex gap-6 justify-between items-end">
+<div>
+<p class="text-primary text-sm font-bold uppercase tracking-wider mb-1">Step 3 of 5</p>
+<h1 class="text-2xl md:text-3xl font-black leading-tight tracking-[-0.033em]">Choose Your Cheese</h1>
+</div>
+<p class="text-sm font-medium opacity-60">60% Complete</p>
+</div>
+<div class="rounded-full bg-[#e8d7ce] dark:bg-white/10 h-2 overflow-hidden">
+<div class="h-full bg-primary transition-all duration-500 ease-out" style="width: 60%;"></div>
+</div>
+<div class="flex justify-between text-sm text-[#9c6549] dark:text-gray-400">
+<span>Previous: Sauce</span>
+<span>Next: Toppings</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col lg:flex-row gap-8 items-start">
+<!-- Left Column: Cheese Selection -->
+<div class="flex-1 w-full">
+<div class="mb-6">
+<p class="text-base font-normal leading-normal text-[#9c6549] dark:text-gray-300">Select your base cheese. You can mix and match or go cheese-less! Customizations available after selection.</p>
+</div>
+<!-- Active Selection Card (Expanded) -->
+<div id="cheeseActive" data-cheese-name="Mozzarella" data-cheese-price="0" class="mb-6 rounded-xl border-2 border-primary bg-white dark:bg-[#2a1d17] p-4 shadow-lg transition-all">
+<div class="flex flex-col md:flex-row gap-4 mb-4">
+<div class="w-full md:w-32 h-32 shrink-0 bg-center bg-no-repeat bg-cover rounded-lg relative" data-alt="Close up texture of melted mozzarella cheese" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCdRrG_CCv94C8_8pbgSMoeIZDfvOa6rBmmvUFTCO73rBOigIyQ9KFF1c4plAuEFqfzTDEcVhc5tzi_lXd-ibxEcZB-s7hUh24OrSzkIUMGeigcb8Dx1irK3gOM86dTjY9RiwUkhOH1PV7HMmHFNgo4DkP0Cm_5A7VVHDzoRCT2ZNnKZ5ux8ioQxR3UqwgBDYr0Mrvy096QY_C17S3oTEw1_n4mnubNwYXxuJHZIVyRCtoHWRPe60TI4U_x1MfBvclsbiYzXj7qQ2I");'>
+<div class="absolute top-2 right-2 bg-primary text-white rounded-full p-1 shadow-sm">
+<span class="material-symbols-outlined text-[18px] block">check</span>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-lg font-bold">Mozzarella</h3>
+<p class="text-sm text-[#9c6549] dark:text-gray-400">Classic, mild, and perfectly melty.</p>
+</div>
+<span class="text-sm font-bold text-primary bg-primary/10 px-2 py-1 rounded">Included</span>
+</div>
+<!-- Customization Controls -->
+<div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="text-xs font-bold uppercase tracking-wider text-[#9c6549] dark:text-gray-400 mb-2 block">Amount</label>
+<div class="flex rounded-lg bg-[#fcf9f8] dark:bg-white/5 p-1 border border-[#f4ebe7] dark:border-white/10">
+<button data-amount="light" class="amount-btn flex-1 py-1.5 text-sm font-medium rounded hover:bg-white dark:hover:bg-white/10 transition-colors">Light</button>
+<button data-amount="normal" data-selected="true" class="amount-btn flex-1 py-1.5 text-sm font-bold rounded bg-white dark:bg-[#3d2b23] shadow-sm text-primary">Normal</button>
+<button data-amount="extra" class="amount-btn flex-1 py-1.5 text-sm font-medium rounded hover:bg-white dark:hover:bg-white/10 transition-colors">Extra</button>
+</div>
+</div>
+<div>
+<label class="text-xs font-bold uppercase tracking-wider text-[#9c6549] dark:text-gray-400 mb-2 block">Coverage</label>
+<div class="flex rounded-lg bg-[#fcf9f8] dark:bg-white/5 p-1 border border-[#f4ebe7] dark:border-white/10">
+<button data-coverage="left" class="coverage-btn flex-1 py-1.5 text-sm font-medium rounded hover:bg-white dark:hover:bg-white/10 transition-colors flex justify-center items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">left_panel_close</span>
+</button>
+<button data-coverage="center" data-selected="true" class="coverage-btn flex-1 py-1.5 text-sm font-bold rounded bg-white dark:bg-[#3d2b23] shadow-sm text-primary flex justify-center items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">circle</span>
+</button>
+<button data-coverage="right" class="coverage-btn flex-1 py-1.5 text-sm font-medium rounded hover:bg-white dark:hover:bg-white/10 transition-colors flex justify-center items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">right_panel_close</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Other Options Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+<!-- Provolone -->
+<div data-cheese-name="Provolone" data-cheese-price="1.5" role="button" tabindex="0" class="group cursor-pointer rounded-xl border border-transparent bg-white dark:bg-[#2a1d17] p-3 shadow-sm hover:shadow-md hover:border-primary/50 transition-all">
+<div class="w-full aspect-video sm:aspect-square bg-center bg-no-repeat bg-cover rounded-lg mb-3 relative overflow-hidden" data-alt="Block of aged provolone cheese" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBI6MhNeye22c4QHsxKrqSZJHewN1sEXYNF7KFQYljkN3gg0suO8VpimpGlb84uFRRIqo29f-14pPPEXqGT0kftKIzCZ2lWL8rW_KDoZkpm59_H22VUvYabNO2XaRuJfI-bntMDMHgKQ7RXA8NaGuF4SVfFRa1sh-hRDs4NJDkesZp0u2pxZVEOSkuzU-4cK4X2cVagUcHWgGBC9FxGc1PKUuUDBcPpex_-Jz_6TruhdrHdUida6evP1HOfsYuz0hjnJPKSpw9XkI0");'>
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
+</div>
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-base">Provolone</h3>
+<span class="text-xs font-bold bg-[#f4ebe7] dark:bg-white/10 px-1.5 py-0.5 rounded">+$1.50</span>
+</div>
+<p class="text-sm text-[#9c6549] dark:text-gray-400 line-clamp-2">Sharp, aged flavor for a bolder taste.</p>
+</div>
+<!-- Cheddar Blend -->
+<div data-cheese-name="Cheddar Blend" data-cheese-price="1.5" role="button" tabindex="0" class="group cursor-pointer rounded-xl border border-transparent bg-white dark:bg-[#2a1d17] p-3 shadow-sm hover:shadow-md hover:border-primary/50 transition-all">
+<div class="w-full aspect-video sm:aspect-square bg-center bg-no-repeat bg-cover rounded-lg mb-3 relative overflow-hidden" data-alt="Shredded cheddar cheese pile" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAUZoO9nwuVVPFCzp6FuxUqAQV9gX2HG7nRPAfzlpvPcsSyY2vklMJeSwbfFy25O2NpOB5f71Ud7yNwCZC9rh829bnBLdtiaAx0yz8mWY-G5KUQlDwFSAAMkOq1pFsGwwhTcPkOG1IjgVBqj7MhT_8nSlVAzVwwezmr5FuS1LfCD0ilqB8S0Zh2OeJZZZD6dQdp2CckQoKJDe9qqa6e_Kz-Sifeaxc0QLobgSCs_vcrxyurPv9EocZGLYd589CrNqaJ-Q5fNV9pTXs");'>
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
+</div>
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-base">Cheddar Blend</h3>
+<span class="text-xs font-bold bg-[#f4ebe7] dark:bg-white/10 px-1.5 py-0.5 rounded">+$1.50</span>
+</div>
+<p class="text-sm text-[#9c6549] dark:text-gray-400 line-clamp-2">Rich &amp; creamy mix of cheddar and mozzarella.</p>
+</div>
+<!-- Feta -->
+<div data-cheese-name="Feta" data-cheese-price="2.0" role="button" tabindex="0" class="group cursor-pointer rounded-xl border border-transparent bg-white dark:bg-[#2a1d17] p-3 shadow-sm hover:shadow-md hover:border-primary/50 transition-all">
+<div class="w-full aspect-video sm:aspect-square bg-center bg-no-repeat bg-cover rounded-lg mb-3 relative overflow-hidden" data-alt="Crumbled feta cheese texture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDFdsVqeZcT8rOLJK96mV2BLT0OmN8Q0Q5tckbEICoeKsIBCWe_CBuL5_wr_-yEoUvWF5Ou7wJJ5PeIpzj5PsvVuCxinUCHUkDk9qHlWKVXASRPlVSN6yG_0Azj_snHRZHS-AeOWTkY9cmdFXGrBsYYVgtfpfkArWVAc9keUK7x4yAleSXjwWjTmRXXzt0OQNmvlLGasgSQunw736N3cqEIRi72MJa4G9g1wH93WneBBHKQ1DJMynfko121JMAazt5gcalloOjCJkA");'>
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
+</div>
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-base">Feta</h3>
+<span class="text-xs font-bold bg-[#f4ebe7] dark:bg-white/10 px-1.5 py-0.5 rounded">+$2.00</span>
+</div>
+<p class="text-sm text-[#9c6549] dark:text-gray-400 line-clamp-2">Tangy, salty crumbles. Great with veggies.</p>
+</div>
+<!-- Vegan Cheese -->
+<div data-cheese-name="Vegan Cheese" data-cheese-price="2.0" role="button" tabindex="0" class="group cursor-pointer rounded-xl border border-transparent bg-white dark:bg-[#2a1d17] p-3 shadow-sm hover:shadow-md hover:border-primary/50 transition-all">
+<div class="w-full aspect-video sm:aspect-square bg-center bg-no-repeat bg-cover rounded-lg mb-3 relative overflow-hidden" data-alt="Plant based cheese shreds" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA1bPLTJG-KxL-J23SyyrGTfiCh2MIwpdFed0q0FZO5oq0Ns3DvFYxmZW4Tg1evnvif595WwpljRlUPIsiWH96Pt8Yj0npvt_OFduzsG-36sc6Qc5LUa__MkjJGFn40BsbLNIJK04ULUWKc42c6R6zbxrzfAkpJuVr6qRsIHQU_OgRDO83hbz5eOj2WaCpvDhcICu5Z21ZG_a8s6Piu6f4bXFseTk3nWcTzsqtSwQA-a1kUEP35YDB_INPmE90nOgcHXsaSK6hc1As");'>
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
+</div>
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-base">Vegan Cheese</h3>
+<span class="text-xs font-bold bg-[#f4ebe7] dark:bg-white/10 px-1.5 py-0.5 rounded">+$2.00</span>
+</div>
+<p class="text-sm text-[#9c6549] dark:text-gray-400 line-clamp-2">Plant-based alternative. Dairy-free.</p>
+</div>
+<!-- No Cheese -->
+<div data-cheese-name="No Cheese" data-cheese-price="0" role="button" tabindex="0" class="group cursor-pointer rounded-xl border border-dashed border-[#9c6549]/30 bg-transparent p-3 hover:border-primary hover:bg-white dark:hover:bg-[#2a1d17] transition-all flex flex-col justify-center items-center text-center h-full min-h-[200px] sm:min-h-0">
+<div class="w-12 h-12 rounded-full bg-[#f4ebe7] dark:bg-white/10 flex items-center justify-center text-[#9c6549] dark:text-gray-400 mb-3 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[24px]">block</span>
+</div>
+<h3 class="font-bold text-base">No Cheese</h3>
+<p class="text-sm text-[#9c6549] dark:text-gray-400 mt-1">Just sauce and toppings.</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Pizza Preview & Summary (Sticky) -->
+<div class="w-full lg:w-[380px] shrink-0 space-y-4 lg:sticky lg:top-4">
+<!-- Preview Card -->
+<div class="rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.08)] bg-white dark:bg-[#2a1d17] overflow-hidden">
+<div class="p-4 border-b border-[#f4ebe7] dark:border-white/10 flex justify-between items-center">
+<h3 class="font-bold text-lg">Your Pizza Preview</h3>
+<span class="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded">Live Update</span>
+</div>
+<div class="aspect-square w-full bg-[#f8f6f5] dark:bg-black/20 relative flex items-center justify-center p-6">
+<!-- Pizza Base Layer -->
+<div class="w-full h-full bg-contain bg-center bg-no-repeat drop-shadow-2xl transition-all duration-500" data-alt="Top down view of a pizza with sauce and cheese" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDPUoQ8wbL_4HZ68GK-eXg4pUxzvlS7uEaw90HbFjySWJ6JjBz_eaBMKRukNRA-mQF5f0i2Qn5O0JvsA2dOUCt5LVNZr48QL99_iFAoTBL8fZxN2qarKkOT2NUEeI4fBCb7wYgw_erKoJNYoJuUOoTZ2qe1-3r0PwherG2zL9v4gRunG8__S9Liyn6lPZaK4q0V1QGXHcWIyFsEJLiGQeez5ZtrBdbv8C2AB-vWgc5nSomcE37ax_OF3w1l3fyvDks3YuNWiOGtAdE"); transform: rotate(15deg);'></div>
+<!-- Tooltip indicator -->
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white/90 dark:bg-black/80 backdrop-blur px-3 py-1.5 rounded-full shadow-lg text-xs font-bold flex items-center gap-1 whitespace-nowrap">
+<span class="material-symbols-outlined text-[14px] text-primary">visibility</span>
+                             Spin to rotate
+                         </div>
+</div>
+<div class="p-4 bg-[#fcf9f8] dark:bg-white/5">
+<h4 class="text-xs font-bold uppercase text-[#9c6549] dark:text-gray-400 tracking-wider mb-3">Current Build</h4>
+<ul class="space-y-3">
+<li class="flex justify-between text-sm">
+<span class="text-gray-600 dark:text-gray-300">Size &amp; Crust</span>
+<span class="font-bold">Large, Hand Tossed</span>
+</li>
+<li class="flex justify-between text-sm">
+<span class="text-gray-600 dark:text-gray-300">Sauce</span>
+<span class="font-bold">Marinara (Normal)</span>
+</li>
+<li class="flex justify-between text-sm items-center">
+<span class="text-gray-600 dark:text-gray-300 flex items-center gap-1">
+                                    Cheese
+                                    <span class="material-symbols-outlined text-[14px] text-green-500">check_circle</span>
+</span>
+<span id="previewCheese" class="font-bold text-primary">Mozzarella (Normal)</span>
+</li>
+</ul>
+</div>
+<div class="p-4 border-t border-[#f4ebe7] dark:border-white/10">
+<div class="flex justify-between items-end mb-4">
+<span class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Price</span>
+<span id="previewTotalPrice" class="text-2xl font-black tracking-tight">$16.99</span>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button id="backBtn" class="flex items-center justify-center rounded-lg h-12 bg-transparent border border-[#e8d7ce] hover:bg-[#f4ebe7] dark:border-white/20 dark:hover:bg-white/10 transition-colors text-[#1c120d] dark:text-white font-bold text-sm">
+                                Back
+                            </button>
+<button id="nextBtn" class="flex items-center justify-center gap-2 rounded-lg h-12 bg-primary hover:bg-primary/90 transition-colors text-[#fcf9f8] font-bold text-sm shadow-lg shadow-primary/30">
+                                Next: Toppings
+                                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+(function(){
+  const baseMenuPrice = 14.00;
+  const priceMap = { "Mozzarella":0, "Provolone":1.5, "Cheddar Blend":1.5, "Feta":2.0, "Vegan Cheese":2.0, "No Cheese":0 };
+  function formatCurrency(n){ return '$' + Number(n).toFixed(2); }
+
+  let store = null;
+  try { store = JSON.parse(localStorage.getItem('pizzaBuilder') || 'null'); } catch(e){ store = null; }
+  if (!store || !store.base){ window.location.href = 'pizabuilder.html'; return; }
+
+  const optionEls = Array.from(document.querySelectorAll('[data-cheese-name]'));
+  const previewCheese = document.getElementById('previewCheese');
+  const previewTotalPrice = document.getElementById('previewTotalPrice');
+  const backBtn = document.getElementById('backBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  function updateTotal(){
+    const basePrice = Number(store.base?.price || 0);
+    const saucePrice = Number(store.sauce?.price || 0);
+    const cheesePrice = Number(store.cheese?.price || 0);
+    const total = baseMenuPrice + basePrice + saucePrice + cheesePrice;
+    previewTotalPrice.textContent = formatCurrency(total);
+  }
+
+  function setSelected(targetEl, opts={amount:'Normal', coverage:'center'}){
+    // Clear selection visuals
+    optionEls.forEach(e => e.classList.remove('ring','ring-primary','border-primary'));
+    targetEl.classList.add('ring','ring-primary');
+
+    const name = targetEl.dataset.cheeseName;
+    const price = Number(targetEl.dataset.cheesePrice || 0);
+    store.cheese = { name, price, amount: opts.amount, coverage: opts.coverage };
+
+    // Update amount/coverage selected styles inside the active block if selecting Mozzarella or No Cheese
+    // If selecting a different card, copy its content into the active card UI for consistency
+    const activeCard = document.getElementById('cheeseActive');
+    if (activeCard){
+      // Update label and price
+      activeCard.querySelector('h3').textContent = name;
+      const tag = activeCard.querySelector('.text-primary');
+      if (tag) tag.textContent = price ? ('+$' + price.toFixed(2)) : 'Included';
+    }
+
+    previewCheese.textContent = name + (store.cheese.amount ? (' (' + store.cheese.amount + ')') : '');
+
+    localStorage.setItem('pizzaBuilder', JSON.stringify(store));
+    updateTotal();
+  }
+
+  // Attach listeners
+  optionEls.forEach(el => {
+    el.addEventListener('click', ()=> setSelected(el));
+    el.addEventListener('keydown', (ev)=>{ if(ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); setSelected(el); }});
+  });
+
+  // Amount buttons
+  const amountBtns = Array.from(document.querySelectorAll('.amount-btn'));
+  amountBtns.forEach(b => b.addEventListener('click', ()=>{
+    amountBtns.forEach(x=> x.dataset.selected = '');
+    b.dataset.selected = 'true';
+    if (!store.cheese) store.cheese = { name: 'Mozzarella', price: 0 };
+    store.cheese.amount = b.dataset.amount || 'Normal';
+    previewCheese.textContent = store.cheese.name + ' (' + store.cheese.amount + ')';
+    localStorage.setItem('pizzaBuilder', JSON.stringify(store));
+  }));
+
+  // Coverage buttons
+  const covBtns = Array.from(document.querySelectorAll('.coverage-btn'));
+  covBtns.forEach(b => b.addEventListener('click', ()=>{
+    covBtns.forEach(x=> x.dataset.selected = '');
+    b.dataset.selected = 'true';
+    if (!store.cheese) store.cheese = { name: 'Mozzarella', price: 0 };
+    store.cheese.coverage = b.dataset.coverage || 'center';
+    localStorage.setItem('pizzaBuilder', JSON.stringify(store));
+  }));
+
+  // Initialize from store
+  if (store.cheese && store.cheese.name){
+    const found = optionEls.find(e => e.dataset.cheeseName === store.cheese.name);
+    if (found) setSelected(found, { amount: store.cheese.amount || 'Normal', coverage: store.cheese.coverage || 'center'});
+    // restore amount selection
+    if (store.cheese.amount){
+      const selA = document.querySelector('[data-amount="' + (store.cheese.amount.toLowerCase()) + '"]');
+      if (selA) { amountBtns.forEach(x=> x.dataset.selected=''); selA.dataset.selected = 'true'; }
+    }
+    if (store.cheese.coverage){ const selC = document.querySelector('[data-coverage="' + store.cheese.coverage + '"]'); if(selC){ covBtns.forEach(x=> x.dataset.selected=''); selC.dataset.selected='true'; } }
+  } else {
+    // default: Mozzarella selected
+    const defaultEl = document.querySelector('[data-cheese-name="Mozzarella"]') || document.getElementById('cheeseActive');
+    if (defaultEl) setSelected(defaultEl);
+  }
+
+  backBtn.addEventListener('click', ()=> window.location.href = 'sauce.html');
+  nextBtn.addEventListener('click', ()=> window.location.href = 'toppings.html');
+
+})();
+</script>
+<script src="app.js"></script>
+</body></html>

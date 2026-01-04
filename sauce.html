@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pizza Builder - Sauce Selection</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2590d",
+                        "primary-dark": "#d04705",
+                        "background-light": "#f8f6f5",
+                        "background-dark": "#221610",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#2f2018",
+                        "text-main-light": "#1c120d",
+                        "text-main-dark": "#fcf9f8",
+                        "text-secondary-light": "#9c6549",
+                        "text-secondary-dark": "#dcc8be",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem", 
+                        "lg": "0.5rem", 
+                        "xl": "0.75rem", 
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark font-display min-h-screen flex flex-col transition-colors duration-200">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 w-full bg-surface-light dark:bg-surface-dark border-b border-[#f4ebe7] dark:border-white/10 px-4 sm:px-10 py-3 shadow-sm">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="text-primary size-8 flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">local_pizza</span>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-tight">Pizza Builder</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8 items-center">
+<nav class="flex items-center gap-6">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="menu.html">Menu</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Deals</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Locations</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Cart</a>
+</nav>
+<button class="flex items-center justify-center rounded-lg h-9 px-5 bg-primary hover:bg-primary-dark text-white text-sm font-bold transition-colors">
+                    Sign In
+                </button>
+</div>
+<!-- Mobile Menu Icon -->
+<button class="md:hidden text-text-main-light dark:text-text-main-dark">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+<!-- Left Column: Builder Process -->
+<div class="flex-1 flex flex-col gap-6">
+<!-- ProgressBar -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-end">
+<p class="text-sm font-bold uppercase tracking-wider text-primary">Step 2 of 5</p>
+<p class="text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark">Next: Toppings</p>
+</div>
+<div class="h-2 w-full bg-[#e8d7ce] dark:bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 40%;"></div>
+</div>
+</div>
+<!-- PageHeading -->
+<div class="py-2">
+<h1 class="text-3xl md:text-4xl font-black tracking-tight mb-2">Choose Your Sauce</h1>
+<p class="text-lg text-text-secondary-light dark:text-text-secondary-dark">Select the perfect base for your masterpiece.</p>
+</div>
+<!-- Sauce Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+<!-- Card 1: Selected State -->
+<label class="group relative cursor-pointer">
+<input checked="" class="peer sr-only" name="sauce" type="radio" value="marinara"/>
+<div class="h-full flex flex-col p-4 rounded-xl border-2 border-transparent bg-surface-light dark:bg-surface-dark shadow-sm peer-checked:border-primary peer-checked:ring-1 peer-checked:ring-primary peer-checked:bg-orange-50 dark:peer-checked:bg-primary/10 transition-all duration-200">
+<div class="relative w-full aspect-square mb-4 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
+<div class="w-full h-full bg-center bg-cover transform group-hover:scale-105 transition-transform duration-500" data-alt="Close up of red tomato marinara sauce spread on raw pizza dough" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDwsRRia0vcGcCUqtOy4nZWGwNii9hZcE3ckMqVX_nwEY4Ryvxl0KnhzfHZCinjaOqd1FGJyL6VmHu4g1-K54TJpollm_zITcR_5mqBCsAdqDe_bjQyZPhe01ts9iiQRje4d0qJRftsBd_AqBZcQyVch1h96brdZrJDV6kiQ099ihuCaT30x5j9cQCt06xVpuwoTmA1o_ernY3lyEEaPv1bCbPWo7DOaYGoXErq6J6qbpzE0K4GB_rdoebLFYb3jfV7jhLRGHBn5PM");'>
+</div>
+<div class="absolute top-2 right-2 bg-primary text-white rounded-full p-1 opacity-0 peer-checked:opacity-100 transition-opacity shadow-sm">
+<span class="material-symbols-outlined text-sm font-bold">check</span>
+</div>
+</div>
+<div class="flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-lg text-text-main-light dark:text-text-main-dark">Zesty Marinara</h3>
+</div>
+<p class="text-sm text-text-secondary-light dark:text-text-secondary-dark mb-3">Classic tomato blend with herbs.</p>
+<div class="mt-auto pt-2 border-t border-gray-100 dark:border-white/10 flex justify-between items-center">
+<span class="text-xs font-semibold uppercase tracking-wide text-text-secondary-light dark:text-text-secondary-dark">Standard</span>
+<span class="text-sm font-bold text-text-main-light dark:text-text-main-dark">Included</span>
+</div>
+</div>
+</div>
+</label>
+<!-- Card 2 -->
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" name="sauce" type="radio" value="alfredo"/>
+<div class="h-full flex flex-col p-4 rounded-xl border-2 border-transparent bg-surface-light dark:bg-surface-dark shadow-sm hover:shadow-md hover:border-orange-200 dark:hover:border-primary/50 peer-checked:border-primary peer-checked:ring-1 peer-checked:ring-primary peer-checked:bg-orange-50 dark:peer-checked:bg-primary/10 transition-all duration-200">
+<div class="relative w-full aspect-square mb-4 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
+<div class="w-full h-full bg-center bg-cover transform group-hover:scale-105 transition-transform duration-500" data-alt="Creamy white alfredo sauce in a bowl with garlic" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCikgpPse7YGbS5ocP92hMfl4BK_jrGuPtt-8u8lrgNTcahcYPm0eWhvebpXmb91mTY1hpP5qx5iTE7rfhpTtKadtvrRe-5hVa_yf7OdzTCq-t7cxbwpsq4skqqcgyRv0j2e8NHPkuZu6JescGyoa4kZtJHAfF3fKkl-SSGcxsbGn9A9MFP7R08GjGsb8PxJyb7c9O_xZz5jPlSgdrSihKkEkrTKdzKcvRxvcBVjn19fAyjZv4HQhFgySGZ6ViQs5c9kcjN4Vj2ysU");'>
+</div>
+<div class="absolute top-2 right-2 bg-primary text-white rounded-full p-1 opacity-0 peer-checked:opacity-100 transition-opacity shadow-sm">
+<span class="material-symbols-outlined text-sm font-bold">check</span>
+</div>
+</div>
+<div class="flex flex-col flex-grow">
+<h3 class="font-bold text-lg text-text-main-light dark:text-text-main-dark mb-1">Creamy Alfredo</h3>
+<p class="text-sm text-text-secondary-light dark:text-text-secondary-dark mb-3">Rich, creamy white sauce with parmesan.</p>
+<div class="mt-auto pt-2 border-t border-gray-100 dark:border-white/10 flex justify-between items-center">
+<span class="text-xs font-semibold uppercase tracking-wide text-text-secondary-light dark:text-text-secondary-dark">Premium</span>
+<span class="text-sm font-bold text-primary">+$1.50</span>
+</div>
+</div>
+</div>
+</label>
+<!-- Card 3 -->
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" name="sauce" type="radio" value="buffalo"/>
+<div class="h-full flex flex-col p-4 rounded-xl border-2 border-transparent bg-surface-light dark:bg-surface-dark shadow-sm hover:shadow-md hover:border-orange-200 dark:hover:border-primary/50 peer-checked:border-primary peer-checked:ring-1 peer-checked:ring-primary peer-checked:bg-orange-50 dark:peer-checked:bg-primary/10 transition-all duration-200">
+<div class="relative w-full aspect-square mb-4 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
+<div class="w-full h-full bg-center bg-cover transform group-hover:scale-105 transition-transform duration-500" data-alt="Bright orange spicy buffalo wing sauce texture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCVtBQnu_cZTFx851lQ-HBBppPYmiR7K5t_k99LyNVMKSW0Ujq1FwFvetwXMdYAnI4SByGH3jzLfBxJTrBlI_dN0ihyg9APb-p1zxXbXrp4zh5dzs659Piv_3BOc404cRd7KR-VoTHMEmhMOzYvRj69es7JNLUymL8w4aw9tspqLDGPtOu1GrifJbPah0xjWf-qUiOOlpN_hi2n_y1eelaCLJ9l2tZbt9XTi1CcIfe8meCVWF8Yw_zoM9gidhjrhhIm3IDCz4GYKmA");'>
+</div>
+<div class="absolute top-2 right-2 bg-primary text-white rounded-full p-1 opacity-0 peer-checked:opacity-100 transition-opacity shadow-sm">
+<span class="material-symbols-outlined text-sm font-bold">check</span>
+</div>
+</div>
+<div class="flex flex-col flex-grow">
+<h3 class="font-bold text-lg text-text-main-light dark:text-text-main-dark mb-1">Spicy Buffalo</h3>
+<p class="text-sm text-text-secondary-light dark:text-text-secondary-dark mb-3">Tangy hot sauce with a buttery kick.</p>
+<div class="mt-auto pt-2 border-t border-gray-100 dark:border-white/10 flex justify-between items-center">
+<span class="text-xs font-semibold uppercase tracking-wide text-text-secondary-light dark:text-text-secondary-dark">Spicy</span>
+<span class="text-sm font-bold text-primary">+$1.00</span>
+</div>
+</div>
+</div>
+</label>
+<!-- Card 4 -->
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" name="sauce" type="radio" value="bbq"/>
+<div class="h-full flex flex-col p-4 rounded-xl border-2 border-transparent bg-surface-light dark:bg-surface-dark shadow-sm hover:shadow-md hover:border-orange-200 dark:hover:border-primary/50 peer-checked:border-primary peer-checked:ring-1 peer-checked:ring-primary peer-checked:bg-orange-50 dark:peer-checked:bg-primary/10 transition-all duration-200">
+<div class="relative w-full aspect-square mb-4 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
+<div class="w-full h-full bg-center bg-cover transform group-hover:scale-105 transition-transform duration-500" data-alt="Dark smoky BBQ sauce in a glass jar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCqOoMmX1ixH9JJAo_J3Ngl0prWmFHa_yXGHCd5J1HMbKTA_rpfk9q5fCaqzozImdiuGTLagqgcbUhpU3iNYV7OqecQcK5qdNWvDCOBGNiA-dz_dAfW0zo9QkLP9U1n7F2zaqe0jJ0ucunUSeG__ADpTu3jJIlTn9BQuamxyu3smt1t-7P0AI4xkrL6mXCz9BbvkKkXDR8g0gbYf5gmAR8n2Et9AiOsyr2UpsjHJZmQiQyijfR47_JvTj7Hy1B4RSqFV2wZPQhZHI4");'>
+</div>
+<div class="absolute top-2 right-2 bg-primary text-white rounded-full p-1 opacity-0 peer-checked:opacity-100 transition-opacity shadow-sm">
+<span class="material-symbols-outlined text-sm font-bold">check</span>
+</div>
+</div>
+<div class="flex flex-col flex-grow">
+<h3 class="font-bold text-lg text-text-main-light dark:text-text-main-dark mb-1">Sweet BBQ</h3>
+<p class="text-sm text-text-secondary-light dark:text-text-secondary-dark mb-3">Smoky hickory flavor with a sweet finish.</p>
+<div class="mt-auto pt-2 border-t border-gray-100 dark:border-white/10 flex justify-between items-center">
+<span class="text-xs font-semibold uppercase tracking-wide text-text-secondary-light dark:text-text-secondary-dark">Savory</span>
+<span class="text-sm font-bold text-primary">+$1.00</span>
+</div>
+</div>
+</div>
+</label>
+<!-- Card 5 -->
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" name="sauce" type="radio" value="garlic"/>
+<div class="h-full flex flex-col p-4 rounded-xl border-2 border-transparent bg-surface-light dark:bg-surface-dark shadow-sm hover:shadow-md hover:border-orange-200 dark:hover:border-primary/50 peer-checked:border-primary peer-checked:ring-1 peer-checked:ring-primary peer-checked:bg-orange-50 dark:peer-checked:bg-primary/10 transition-all duration-200">
+<div class="relative w-full aspect-square mb-4 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
+<div class="w-full h-full bg-center bg-cover transform group-hover:scale-105 transition-transform duration-500" data-alt="Roasted garlic bulbs and parmesan cheese on a wooden table" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB4DWutnFrPGH_BcM_GP9cJhxNdiTNK_NAyfHChK2P1CSVSzk_CjM5hz_LHJuvVHKfztIHq50ZFRjp0fLKWAMxTimESRi6b1h1rLJAhXVQX6UK2nk0M1Fwa0ZhlaYFCmAhVMqDygAWgtB0UtxE6fPVQjt9Az47mLecPO9Rv_ODB3Kh1gTNoho-8NnAeG8GshhnhJthfybTbqkgm3ng5xnLcI_95t-N-10w14t8KJx_mmijCx4IJugnakCtUx8hOuvxT_r5XGqyiRLk");'>
+</div>
+<div class="absolute top-2 right-2 bg-primary text-white rounded-full p-1 opacity-0 peer-checked:opacity-100 transition-opacity shadow-sm">
+<span class="material-symbols-outlined text-sm font-bold">check</span>
+</div>
+</div>
+<div class="flex flex-col flex-grow">
+<h3 class="font-bold text-lg text-text-main-light dark:text-text-main-dark mb-1">Garlic Parmesan</h3>
+<p class="text-sm text-text-secondary-light dark:text-text-secondary-dark mb-3">White sauce infused with roasted garlic.</p>
+<div class="mt-auto pt-2 border-t border-gray-100 dark:border-white/10 flex justify-between items-center">
+<span class="text-xs font-semibold uppercase tracking-wide text-text-secondary-light dark:text-text-secondary-dark">Premium</span>
+<span class="text-sm font-bold text-primary">+$1.50</span>
+</div>
+</div>
+</div>
+</label>
+</div>
+<!-- Footer Navigation Buttons -->
+<div class="mt-8 flex justify-between items-center py-4 border-t border-gray-200 dark:border-white/10">
+<button id="backToBase" class="flex items-center gap-2 px-6 py-3 rounded-lg border border-gray-300 dark:border-gray-600 text-text-main-light dark:text-text-main-dark font-bold hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+                        Back to Size
+                    </button>
+<button id="sauceNext" class="flex items-center gap-2 px-8 py-3 rounded-lg bg-primary hover:bg-primary-dark text-white font-bold shadow-lg shadow-primary/30 transition-all hover:scale-[1.02]">
+                        Next: Toppings
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Right Column: Summary Sidebar (Sticky) -->
+<div class="lg:w-80 flex-shrink-0">
+<div class="sticky top-24 rounded-xl bg-surface-light dark:bg-surface-dark shadow-sm border border-[#e8d7ce] dark:border-white/5 overflow-hidden">
+<div class="bg-orange-50 dark:bg-white/5 p-4 border-b border-[#e8d7ce] dark:border-white/5">
+<h3 class="font-bold text-lg text-text-main-light dark:text-text-main-dark">Your Pizza</h3>
+</div>
+<div class="p-5 flex flex-col gap-4">
+<!-- Summary Item: Size -->
+<div class="flex justify-between items-start pb-4 border-b border-dashed border-gray-200 dark:border-gray-700">
+<div>
+<p class="text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark mb-1">Size</p>
+<p class="font-bold text-text-main-light dark:text-text-main-dark">Large (14")</p>
+</div>
+<span class="text-sm font-semibold text-text-main-light dark:text-text-main-dark">$14.00</span>
+</div>
+<!-- Summary Item: Crust -->
+<div class="flex justify-between items-start pb-4 border-b border-dashed border-gray-200 dark:border-gray-700">
+<div>
+<p class="text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark mb-1">Crust</p>
+<p id="summaryCrust" class="font-bold text-text-main-light dark:text-text-main-dark">Hand Tossed</p>
+</div>
+<span id="summaryCrustPrice" class="text-sm font-semibold text-text-main-light dark:text-text-main-dark">$0.00</span>
+</div>
+<!-- Summary Item: Sauce (Active) -->
+<div class="flex justify-between items-start pb-4 border-b border-dashed border-gray-200 dark:border-gray-700 bg-primary/5 -mx-5 px-5 py-3 border-l-4 border-l-primary">
+<div>
+<p class="text-sm font-medium text-primary mb-1">Sauce</p>
+<p id="summarySauce" class="font-bold text-text-main-light dark:text-text-main-dark">Zesty Marinara</p>
+</div>
+<span id="summarySaucePrice" class="text-sm font-semibold text-text-main-light dark:text-text-main-dark">Included</span>
+</div>
+<!-- Summary Item: Toppings placeholder -->
+<div class="flex justify-between items-start opacity-50">
+<div>
+<p class="text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark mb-1">Toppings</p>
+<p class="font-bold text-text-main-light dark:text-text-main-dark text-sm italic">Not selected</p>
+</div>
+</div>
+<!-- Total -->
+<div class="mt-2 pt-4 border-t border-gray-200 dark:border-gray-700 flex justify-between items-end">
+<div>
+<p class="text-xs uppercase tracking-wider font-bold text-text-secondary-light dark:text-text-secondary-dark">Total</p>
+<p id="summaryTotalPrice" class="text-2xl font-black text-primary">$14.00</p>
+</div>
+<span class="text-xs text-text-secondary-light dark:text-text-secondary-dark mb-1">1080 cal</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Simple Footer for Brand -->
+<footer class="mt-auto py-6 text-center text-sm text-text-secondary-light dark:text-text-secondary-dark border-t border-[#f4ebe7] dark:border-white/5 bg-surface-light dark:bg-surface-dark">
+<p>© 2024 Pizza Builder Inc. All rights reserved.</p>
+</footer>
+<script>
+(function(){
+  const baseMenuPrice = 14.00;
+  let store = null;
+  try { store = JSON.parse(localStorage.getItem('pizzaBuilder') || 'null'); } catch (e){ store = null; }
+  if (!store || !store.base){ window.location.href = 'pizabuilder.html'; return; }
+
+  const summaryCrust = document.getElementById('summaryCrust');
+  const summaryCrustPrice = document.getElementById('summaryCrustPrice');
+  const summarySauce = document.getElementById('summarySauce');
+  const summarySaucePrice = document.getElementById('summarySaucePrice');
+  const summaryTotalPrice = document.getElementById('summaryTotalPrice');
+
+  const base = store.base || { name: 'Hand Tossed', price: 0 };
+  summaryCrust.textContent = base.name;
+  summaryCrustPrice.textContent = base.price ? ('$' + Number(base.price).toFixed(2)) : '$0.00';
+
+  function formatCurrency(n){ return '$' + Number(n).toFixed(2); }
+  function updateTotal(saucePrice){ const total = baseMenuPrice + Number(base.price || 0) + Number(saucePrice || 0); summaryTotalPrice.textContent = formatCurrency(total); }
+
+  const priceMap = { marinara:0, alfredo:1.5, buffalo:1.0, bbq:1.0, garlic:1.5 };
+  const radios = Array.from(document.querySelectorAll('input[name="sauce"]'));
+
+  function applySelection(r){
+    const price = priceMap[r.value] || 0;
+    const label = r.closest('label').querySelector('h3');
+    summarySauce.textContent = label ? label.textContent : r.value;
+    summarySaucePrice.textContent = price ? ('+' + formatCurrency(price)) : 'Included';
+    updateTotal(price);
+    try { const current = JSON.parse(localStorage.getItem('pizzaBuilder')||'{}'); current.sauce = { name: summarySauce.textContent, price }; localStorage.setItem('pizzaBuilder', JSON.stringify(current)); } catch(e){ console.warn(e); }
+  }
+
+  radios.forEach(r => r.addEventListener('change', ()=> applySelection(r)));
+
+  const checked = document.querySelector('input[name="sauce"]:checked') || radios[0];
+  if (checked) applySelection(checked);
+
+  document.getElementById('backToBase').addEventListener('click', ()=>{ window.location.href = 'pizabuilder.html'; });
+  document.getElementById('sauceNext').addEventListener('click', ()=>{
+    const sel = document.querySelector('input[name="sauce"]:checked');
+    if (!sel){ alert('Please choose a sauce'); return; }
+    window.location.href = 'cheese.html';
+  });
+})();
+</script>
+<script src="app.js"></script>
+</body></html>

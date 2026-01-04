@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Payment - Scan QR Code</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2590d",
+                        "background-light": "#f8f6f5",
+                        "background-dark": "#221610",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#2f251f",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e6dbd6;
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #4a3b32;
+        }
+        .qr-scanner-line {
+            animation: scan 2s linear infinite;
+        }
+        @keyframes scan {
+            0% { top: 0%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#1c120d] dark:text-[#fcf9f8] min-h-screen flex flex-col">
+<header class="sticky top-0 z-50 w-full border-b border-[#f4ebe7] dark:border-[#3a2d26] bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur-sm px-6 py-3">
+<div class="mx-auto max-w-[1200px] flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center size-10 rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-2xl">local_pizza</span>
+</div>
+<h2 class="text-xl font-extrabold tracking-tight text-[#1c120d] dark:text-white">PizzaSlice</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8 font-medium text-sm text-[#9c6549] dark:text-[#d1b3a4]">
+<a class="hover:text-primary transition-colors" href="menu.html">Menu</a>
+<a class="hover:text-primary transition-colors" href="#">Offers</a>
+<a class="hover:text-primary transition-colors" href="#">Restaurants</a>
+<a class="text-primary font-bold" href="#">Cart (2)</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden sm:flex items-center justify-center rounded-lg h-9 px-4 bg-primary/10 hover:bg-primary/20 text-primary text-sm font-bold transition-colors">
+                    Track Order
+                </button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-white dark:border-[#3a2d26] shadow-sm" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDJk4sPOGd7eOCoXyjMMd7Ii_qyAFKbaxCZoxJXvP75IR1W52HVhPPB2Ahh3V_tgkrQw9WQWFexceyzCzUlFn6Fn_8405D6W_3dbJdFyM348LfmB9AoYx5uHjFqHDlsuSmU20o4mVB79HM7hBF45yVD_22oRjCRhPJsUqaKpEndWiIQ_ybF2ISiXnNWRQ4aCoAIpXF1quyQYa8HsWIpzVoY2qOLJo8WyCwqipF4n3vECqlG_vOuN0qRqNY7kSJ5_c9DVpTlrDxqArg");'></div>
+</div>
+</div>
+</header>
+<main class="flex-grow w-full px-4 py-8 md:px-8">
+<div class="mx-auto max-w-[1200px]">
+<div class="mb-8 flex items-center gap-4">
+<button class="flex items-center justify-center size-10 rounded-full bg-white dark:bg-surface-dark border border-[#f4ebe7] dark:border-[#3a2d26] hover:border-primary text-[#1c120d] dark:text-white transition-colors group">
+<span class="material-symbols-outlined group-hover:text-primary">arrow_back</span>
+</button>
+<div>
+<h1 class="text-3xl md:text-4xl font-black leading-tight tracking-tight mb-1">UPI Payment</h1>
+<p class="text-[#9c6549] dark:text-[#d1b3a4] text-base md:text-lg">Scan the QR code to complete your order</p>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<div class="lg:col-span-8 space-y-8">
+<section class="bg-surface-light dark:bg-surface-dark rounded-2xl shadow-sm border border-[#f4ebe7] dark:border-[#3a2d26] overflow-hidden p-8 md:p-12 text-center relative">
+<div class="absolute top-6 right-6 inline-flex items-center gap-2 bg-orange-50 dark:bg-orange-900/20 text-orange-700 dark:text-orange-400 px-4 py-2 rounded-full text-sm font-bold border border-orange-100 dark:border-orange-800/30">
+<span class="material-symbols-outlined text-[18px]">timer</span>
+<span class="tabular-nums">04:59</span>
+</div>
+<div class="max-w-md mx-auto">
+<h2 class="text-xl font-bold text-[#1c120d] dark:text-white mb-2">Total Amount</h2>
+<div class="text-4xl font-black text-primary mb-8"><span id="upiAmount">$0.00</span></div>
+<div class="relative bg-white p-4 rounded-2xl shadow-lg border-2 border-[#f4ebe7] dark:border-[#3a2d26] inline-block mb-8">
+<div class="relative overflow-hidden rounded-lg">
+<img alt="Payment QR Code" class="size-64 mix-blend-multiply dark:mix-blend-normal opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClGw84oAuqN6QrB2PoqzFTLiQgSd3juhK1frZZc9k6GvyN2OyUqbbvts1-R9_aGVbXbJB1n-qknRDIKpVTdi5SlnxRQffB9nYVeGYLyJBRzj8QMcNjpcedzY1UE74G5HZ2i8NskHXozfQ62wFhaThwV5nfF_5xVQlx6BYqfCSuyXBoWHVq6LWpRq7uR8Dl-BeGqlmmgvQjw3A9e6NjfuFZb7dyem5LGOdhqWZxNshI2FCpXy34CqghLai9AEXBOIu_-ivkZlgMr8k"/>
+<div class="absolute inset-x-0 h-1 bg-primary/50 shadow-[0_0_10px_#f2590d] qr-scanner-line z-10"></div>
+</div>
+<div class="mt-3 flex items-center justify-center gap-2 text-xs font-bold text-[#9c6549]">
+<span class="material-symbols-outlined text-[16px]">qr_code_2</span>
+<span>UPI ID: pizza.slice@bank</span>
+</div>
+</div>
+<div class="bg-[#fcf9f8] dark:bg-[#221610] rounded-xl p-6 border border-[#f4ebe7] dark:border-[#3a2d26] text-left">
+<h3 class="text-sm font-bold text-[#1c120d] dark:text-white mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">smartphone</span>
+                                    Scan with any UPI App
+                                </h3>
+<div class="flex flex-wrap gap-4 mb-6">
+<div class="flex items-center gap-2 bg-white dark:bg-surface-dark px-3 py-2 rounded-lg border border-[#e6dbd6] dark:border-[#4a3b32] shadow-sm">
+<div class="size-6 rounded-full bg-blue-500 flex items-center justify-center text-white text-[10px] font-bold">G</div>
+<span class="text-sm font-bold text-[#5c443b] dark:text-[#d1b3a4]">GPay</span>
+</div>
+<div class="flex items-center gap-2 bg-white dark:bg-surface-dark px-3 py-2 rounded-lg border border-[#e6dbd6] dark:border-[#4a3b32] shadow-sm">
+<div class="size-6 rounded-full bg-[#5f259f] flex items-center justify-center text-white text-[10px] font-bold">Ph</div>
+<span class="text-sm font-bold text-[#5c443b] dark:text-[#d1b3a4]">PhonePe</span>
+</div>
+<div class="flex items-center gap-2 bg-white dark:bg-surface-dark px-3 py-2 rounded-lg border border-[#e6dbd6] dark:border-[#4a3b32] shadow-sm">
+<div class="size-6 rounded-full bg-[#00b9f1] flex items-center justify-center text-white text-[10px] font-bold">Py</div>
+<span class="text-sm font-bold text-[#5c443b] dark:text-[#d1b3a4]">Paytm</span>
+</div>
+<div class="flex items-center gap-2 bg-white dark:bg-surface-dark px-3 py-2 rounded-lg border border-[#e6dbd6] dark:border-[#4a3b32] shadow-sm">
+<div class="size-6 rounded-full bg-orange-500 flex items-center justify-center text-white text-[10px] font-bold">B</div>
+<span class="text-sm font-bold text-[#5c443b] dark:text-[#d1b3a4]">BHIM</span>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex gap-3">
+<div class="flex items-center justify-center size-6 rounded-full bg-primary/10 text-primary text-xs font-bold shrink-0">1</div>
+<p class="text-sm text-[#5c443b] dark:text-[#d1b3a4]">Open your preferred UPI app on your mobile device.</p>
+</div>
+<div class="flex gap-3">
+<div class="flex items-center justify-center size-6 rounded-full bg-primary/10 text-primary text-xs font-bold shrink-0">2</div>
+<p class="text-sm text-[#5c443b] dark:text-[#d1b3a4]">Select the <strong>Scan QR</strong> option and point your camera at the code.</p>
+</div>
+<div class="flex gap-3">
+<div class="flex items-center justify-center size-6 rounded-full bg-primary/10 text-primary text-xs font-bold shrink-0">3</div>
+<p class="text-sm text-[#5c443b] dark:text-[#d1b3a4]">Confirm payment of <strong id="upiConfirmAmount">$0.00</strong> to complete your order.</p>
+</div>
+</div>
+</div>
+<div class="mt-8 flex flex-col items-center gap-3">
+<div class="flex items-center gap-2 text-primary animate-pulse">
+<span class="material-symbols-outlined">sync</span>
+<span class="font-bold text-sm">Waiting for payment confirmation...</span>
+</div>
+<p class="text-xs text-[#9c6549] dark:text-[#8a7268]">Please do not close this window or press back</p>
+</div>
+</div>
+</section>
+</div>
+<div class="lg:col-span-4 relative">
+<div class="sticky top-24 space-y-6">
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl shadow-lg border border-[#f4ebe7] dark:border-[#3a2d26] overflow-hidden opacity-90">
+<div class="p-6">
+<h3 class="text-lg font-extrabold text-[#1c120d] dark:text-white mb-6 flex items-center justify-between">
+                                    Order Summary
+                                    <span class="text-xs font-normal px-2 py-1 rounded bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">2 Items</span>
+</h3>
+<div class="space-y-4 mb-6">
+<div class="flex gap-3">
+<div class="size-12 rounded-lg bg-center bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBp0-8-oZPDyHmxAhGLCDZgMwk7viYVtmOFybfzhr3o6mIkt3mXrgnRs9aYqLSWtp5lqVgGo_a7SI5hYN2iHhrSzU9FOetdRVZVIMQ3x3VwnoyEiZXmD1rx1lVaABzawCBprYeQoY8TCk08LhOVj158J7w_KT_nZ0qSBs_TtX7MtiFkfNPIBPfxm5Tzrodh46hLaF7uGrF18271V_hFiAxKuVBLuSEekXfsUXU0dUHRY87C5eW_WMmuOVxmg3UWxbiWLdrQ-NomJnQ");'></div>
+<div class="flex-1">
+<p class="text-sm font-bold text-[#1c120d] dark:text-white">Pepperoni Feast</p>
+<p class="text-xs text-[#9c6549] dark:text-[#d1b3a4]">Large x 1</p>
+</div>
+<div class="text-sm font-bold text-[#1c120d] dark:text-white">$18.00</div>
+</div>
+<div class="flex gap-3">
+<div class="size-12 rounded-lg bg-center bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAImIlQK4ZGbH68z9d-UCM_qj7H4mouigyT19by5i_CvdT0m3aj9GRQfiLX6VOaX_EDVukGgk4YsHp5C0IyIlgVnKtTNrSjQjX8fNzM-G8U2MZaz32G1SDd_976JMzDfTearKtYjqtQ5mTopcXDMAoWfHqYfHXapB1trI4iXJYioW_ztbme1agijcQKx7uk5O_n779iH0pXxcNqfMw-mTwiMTphACQB6HdMvQlu8Wy9meC2g5OletRhb1_8nDFYTHPDKwEpeZKRGFE");'></div>
+<div class="flex-1">
+<p class="text-sm font-bold text-[#1c120d] dark:text-white">Veggie Paradise</p>
+<p class="text-xs text-[#9c6549] dark:text-[#d1b3a4]">Medium x 1</p>
+</div>
+<div class="text-sm font-bold text-[#1c120d] dark:text-white">$14.00</div>
+</div>
+</div>
+<div class="my-4 border-t border-dashed border-[#e6dbd6] dark:border-[#4a3b32]"></div>
+<div class="space-y-2 text-sm">
+<div class="flex justify-between text-[#5c443b] dark:text-[#d1b3a4]">
+<span>Subtotal</span>
+<span>$32.00</span>
+</div>
+<div class="flex justify-between text-[#5c443b] dark:text-[#d1b3a4]">
+<span>Tax &amp; Fees</span>
+<span>$3.50</span>
+</div>
+<div class="flex justify-between items-center mt-2 pt-2 border-t border-[#f4ebe7] dark:border-[#3a2d26]">
+<span class="text-base font-bold text-[#1c120d] dark:text-white">Total</span>
+<span class="text-xl font-black text-[#1c120d] dark:text-white">$35.50</span>
+</div>
+</div>
+<div class="mt-6 space-y-3">
+<button class="w-full flex items-center justify-center gap-2 rounded-xl border-2 border-[#e6dbd6] dark:border-[#4a3b32] bg-transparent hover:bg-[#fcf9f8] dark:hover:bg-[#362b25] text-[#5c443b] dark:text-[#d1b3a4] font-bold py-3 transition-colors">
+                                        Cancel Transaction
+                                    </button>
+</div>
+</div>
+<div class="bg-[#fcf9f8] dark:bg-[#362b25] px-6 py-3 border-t border-[#f4ebe7] dark:border-[#3a2d26] flex items-center justify-center gap-2 text-xs text-[#9c6549] dark:text-[#8a7268]">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+<span>256-bit Secured Payment</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="border-t border-[#f4ebe7] dark:border-[#3a2d26] bg-white dark:bg-surface-dark mt-auto py-8">
+<div class="mx-auto max-w-[1200px] px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-[#9c6549] dark:text-[#8a7268]">
+<p>© 2023 PizzaSlice. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors" href="#">Help Center</a>
+</div>
+</div>
+</footer>
+<script>
+(function(){
+  function formatCurrency(n){ return '$'+Number(n).toFixed(2); }
+  function getCart(){ try{ return JSON.parse(localStorage.getItem('cart')||'[]'); }catch(e){ return []; } }
+  const upiAmountEl = document.getElementById('upiAmount');
+  const upiConfirmEl = document.getElementById('upiConfirmAmount');
+  const DELIVERY = 5.00;
+
+  function render(){
+    const cart = getCart();
+    const subtotal = +(cart.reduce((s,i)=> s + Number(i.price||0)*(i.qty||1), 0)).toFixed(2);
+    const tax = +(subtotal * 0.08).toFixed(2);
+    const total = +(subtotal + tax + DELIVERY).toFixed(2);
+    if (upiAmountEl) upiAmountEl.textContent = formatCurrency(total);
+    if (upiConfirmEl) upiConfirmEl.textContent = formatCurrency(total);
+    // Update any summary counts
+    const badge = document.querySelector('.text-xs.font-normal.px-2');
+    if (badge) badge.textContent = (cart.reduce((s,i)=> s+(i.qty||0),0)) + ' Items';
+  }
+
+  document.addEventListener('DOMContentLoaded', render);
+  // Back button handler (top-left)
+  const backBtn = document.querySelector('button.group');
+  if (backBtn) backBtn.addEventListener('click', ()=> window.history.back());
+  // After 5s simulate successful payment and navigate to success page
+  setTimeout(function(){
+    try {
+      // Build a minimal order summary so success page can display exact paid amount
+      const cart = getCart();
+      const subtotal = +(cart.reduce((s,i)=> s + Number(i.price||0)*(i.qty||1), 0)).toFixed(2);
+      const tax = +(subtotal * 0.08).toFixed(2);
+      const total = +(subtotal + tax + DELIVERY).toFixed(2);
+      const orderId = '#ORD-' + Math.floor(Math.random()*9000 + 1000) + '-' + (Math.floor(Math.random()*9000)+1000);
+      const order = {
+        orderId,
+        amount: total,
+        formattedAmount: formatCurrency(total),
+        currency: 'USD',
+        date: new Date().toISOString(),
+        items: cart
+      };
+      try { localStorage.setItem('lastOrder', JSON.stringify(order)); } catch(e){}
+      try { localStorage.removeItem('cart'); } catch(e){}
+    } catch(e){}
+    window.location.href = 'success.html';
+  }, 5000);
+})();
+</script>
+
+<script src="app.js"></script>
+</body></html>
